@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nuestra Historia — AutoCompara</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand:#f5f0e8;--cream:#faf7f2;--brown:#2c1e0f;--brown2:#4a3728;
+  --amber:#d4850a;--amber2:#f0a030;--amber3:#ffc55a;
+  --teal:#1a6b5c;--teal2:#2a8a72;--teal3:#3db898;
+  --muted:#8a7a68;--border:#ddd3c0;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--brown);font-family:'Outfit',sans-serif;overflow-x:hidden;}
+
+/* ── NAV ── */
+.site-nav{background:linear-gradient(135deg,#1a3a2a,#0f2818);padding:18px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.3);}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.5rem;color:#fff;text-decoration:none;display:flex;align-items:center;gap:8px;}
+.logo-dot{width:8px;height:8px;background:var(--amber3);border-radius:50%;}
+.nav-links{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.nav-link{padding:6px 14px;border-radius:100px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.82);font-size:.78rem;font-weight:600;text-decoration:none;transition:all .2s;}
+.nav-link:hover,.nav-link.active{background:var(--amber);border-color:var(--amber);color:#fff;}
+.soc-row{display:flex;gap:6px;}
+.soc-btn{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .2s;}
+.soc-btn svg{width:14px;height:14px;}
+.soc-btn:hover{background:var(--amber);border-color:var(--amber);color:#fff;}
+
+/* ── HERO ── */
+.page-hero{background:linear-gradient(135deg,#1a3a2a 0%,#0f2818 50%,#2a4a30 100%);padding:80px 40px 100px;text-align:center;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(212,133,10,.1),transparent 70%);pointer-events:none;}
+.page-hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent,var(--amber3),var(--teal3),transparent);}
+.page-kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(212,133,10,.2);border:1px solid rgba(212,133,10,.4);color:var(--amber3);font-size:.75rem;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:20px;}
+.page-h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2.2rem,5vw,3.6rem);color:#fff;line-height:1.1;letter-spacing:-1px;margin-bottom:16px;}
+.page-h1 em{font-style:italic;color:var(--amber3);}
+.page-sub{font-size:1rem;color:rgba(255,255,255,.6);max-width:560px;margin:0 auto;line-height:1.7;font-weight:300;}
+
+/* ── CONTENT ── */
+.content-wrap{max-width:820px;margin:0 auto;padding:64px 24px 80px;}
+
+/* Timeline */
+.timeline{position:relative;padding-left:36px;}
+.timeline::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--amber),var(--teal),var(--amber3));}
+
+.tl-item{position:relative;margin-bottom:52px;}
+.tl-item:last-child{margin-bottom:0;}
+.tl-dot{position:absolute;left:-30px;top:4px;width:18px;height:18px;border-radius:50%;background:var(--amber);border:3px solid var(--cream);box-shadow:0 0 0 2px var(--amber);z-index:1;transition:transform .2s;}
+.tl-item:hover .tl-dot{transform:scale(1.3);}
+.tl-year{font-family:'Playfair Display',serif;font-weight:700;font-size:.8rem;color:var(--amber);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.tl-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.4rem;color:var(--brown);margin-bottom:10px;line-height:1.2;}
+.tl-body{font-size:.92rem;color:var(--brown2);line-height:1.75;}
+.tl-body p{margin-bottom:12px;}
+.tl-body p:last-child{margin-bottom:0;}
+
+/* Pull quote */
+.pullquote{background:linear-gradient(135deg,rgba(212,133,10,.08),rgba(26,107,92,.06));border-left:4px solid var(--amber);border-radius:0 12px 12px 0;padding:20px 24px;margin:32px 0;font-family:'Playfair Display',serif;font-style:italic;font-size:1.08rem;color:var(--brown2);line-height:1.6;}
+.pullquote cite{display:block;margin-top:10px;font-family:'Outfit',sans-serif;font-style:normal;font-size:.78rem;font-weight:600;color:var(--muted);letter-spacing:.5px;}
+
+/* Values grid */
+.values-section{background:linear-gradient(135deg,#f0ebe0,#e8e0d0);border-radius:20px;padding:36px;margin:48px 0;}
+.values-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.4rem;color:var(--brown);margin-bottom:24px;}
+.values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.value-card{background:#fff;border-radius:14px;padding:20px;border:1px solid var(--border);}
+.value-icon{font-size:1.8rem;margin-bottom:10px;}
+.value-name{font-weight:700;font-size:.95rem;color:var(--brown);margin-bottom:6px;}
+.value-desc{font-size:.82rem;color:var(--muted);line-height:1.6;}
+
+/* Team */
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:32px;}
+.team-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:22px;text-align:center;transition:transform .2s,box-shadow .2s;}
+.team-card:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(44,30,15,.1);}
+.team-avatar{width:64px;height:64px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;font-size:1.3rem;color:#fff;}
+.team-name{font-weight:700;font-size:.95rem;color:var(--brown);margin-bottom:3px;}
+.team-role{font-size:.78rem;color:var(--amber);font-weight:600;margin-bottom:8px;}
+.team-bio{font-size:.79rem;color:var(--muted);line-height:1.6;}
+
+/* section label */
+.section-label{font-family:'Playfair Display',serif;font-weight:700;font-size:1.5rem;color:var(--brown);margin:48px 0 20px;}
+
+/* footer */
+.page-footer{background:var(--brown);color:rgba(255,255,255,.4);padding:28px 40px;text-align:center;font-size:.77rem;line-height:1.8;}
+.page-footer strong{color:rgba(255,255,255,.76);}
+.pf-links{display:flex;gap:16px;justify-content:center;margin-bottom:14px;flex-wrap:wrap;}
+.pf-link{color:rgba(255,255,255,.5);text-decoration:none;font-size:.78rem;transition:color .2s;}
+.pf-link:hover{color:var(--amber3);}
+
+@media(max-width:680px){
+  .values-grid{grid-template-columns:1fr;}
+  .team-grid{grid-template-columns:1fr 1fr;}
+  .site-nav{padding:14px 20px;}
+  .content-wrap{padding:40px 18px 60px;}
+  .page-hero{padding:60px 20px 80px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="autocompara.html" class="logo"><span class="logo-dot"></span>AutoCompara</a>
+  <div class="nav-links">
+    <a href="autocompara.html" class="nav-link">🚗 Comparador</a>
+    <a href="historia.html"    class="nav-link active">📖 Nuestra Historia</a>
+    <a href="motor.html"       class="nav-link">🏎️ El Mundo del Motor</a>
+  </div>
+  <div class="soc-row">
+    <a href="https://www.instagram.com/autocompara" target="_blank" rel="noopener" class="soc-btn" title="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/company/autocompara" target="_blank" rel="noopener" class="soc-btn" title="LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+    </a>
+    <a href="https://x.com/autocompara" target="_blank" rel="noopener" class="soc-btn" title="X">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-kicker">📖 Sobre nosotros</div>
+  <h1 class="page-h1">Una historia de<br><em>frustración convertida</em><br>en solución</h1>
+  <p class="page-sub">Somos conductores como tú. Y como tú, alguna vez llegamos al aeropuerto y pagamos el doble de lo que debíamos.</p>
+</section>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+  <!-- Intro -->
+  <p style="font-size:1.05rem;line-height:1.8;color:var(--brown2);margin-bottom:20px;">
+    AutoCompara nació de una anécdota que, a estas alturas, le habrá pasado a casi cualquier persona que haya alquilado un coche en España: llegas al aeropuerto, tienes prisa, pinchas en el primer comparador que sale en Google y acabas pagando un precio que, tres días después en el hotel, te das cuenta que era el doble de lo que costaba en la web oficial.
+  </p>
+  <p style="font-size:1.05rem;line-height:1.8;color:var(--brown2);margin-bottom:40px;">
+    Eso nos pasó a nosotros. Y decidimos que no tenía que seguir pasándole a nadie más.
+  </p>
+
+  <!-- TIMELINE -->
+  <div class="section-label">Cómo llegamos hasta aquí</div>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-year">2017 · El origen</div>
+      <div class="tl-title">Un viaje de trabajo, una factura inesperada</div>
+      <div class="tl-body">
+        <p>Carlos, uno de los fundadores, cogió un coche de alquiler en el aeropuerto de Málaga para una reunión en Marbella. Lo había reservado a través de un comparador conocido. Al devolver el coche, la factura triplicaba lo que esperaba: seguros que no había pedido, extras por el GPS, un cargo por "limpieza de lunas" que nadie le había mencionado.</p>
+        <p>Esa noche, en el hotel, le contó la historia a su amigo Miguel —informático de profesión— y a su cuñada Lucía, que llevaba años trabajando en agencias de viajes. Los tres coincidieron en lo mismo: <em>"tiene que haber una forma mejor de hacer esto."</em></p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--teal);box-shadow:0 0 0 2px var(--teal)"></div>
+      <div class="tl-year">2018 · El proyecto</div>
+      <div class="tl-title">Fines de semana, café y mucho código</div>
+      <div class="tl-body">
+        <p>Lo que empezó como una conversación de cena se convirtió en un proyecto de fin de semana. Miguel comenzó a construir el primer prototipo: un sistema que buscaba en las webs de las grandes rentadoras y mostraba los resultados en una misma pantalla, sin cobrar comisión ni redirigir a través de intermediarios.</p>
+        <p>La filosofía era radical en su sencillez: <strong>que el cliente llegue a la web oficial con todo ya rellenado</strong>. Sin sorpresas. Sin capas intermedias. Sin formularios que rellenar dos veces.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--amber2);box-shadow:0 0 0 2px var(--amber2)"></div>
+      <div class="tl-year">2019 · El lanzamiento</div>
+      <div class="tl-title">De la cocina al mundo</div>
+      <div class="tl-body">
+        <p>Con cinco empresas integradas y una interfaz que todavía era bastante rudimentaria, lanzaron AutoCompara en marzo de 2019. La respuesta fue inesperada: en la primera semana, más de 400 personas usaron el comparador. La mayoría llegó por boca a boca.</p>
+        <p>Una reseña en un foro de viajeros frecuentes lo describía así: <em>"Por fin alguien que te lleva directamente a la web sin cobrarte por ello."</em> Esa frase se convirtió, de forma espontánea, en el lema oficioso del proyecto.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="background:#7c4dcc;box-shadow:0 0 0 2px #7c4dcc"></div>
+      <div class="tl-year">2020–2021 · La prueba</div>
+      <div class="tl-title">Una pandemia y una lección sobre resiliencia</div>
+      <div class="tl-body">
+        <p>Cuando el turismo se detuvo en seco, AutoCompara también lo hizo. Pero el equipo usó ese tiempo para rediseñar la plataforma desde cero, añadir más empresas, mejorar las URLs de redirección para que los parámetros llegaran correctamente a cada web, y traducir la plataforma a cuatro idiomas.</p>
+        <p>Cuando en 2021 el turismo volvió a despertar, AutoCompara estaba más preparado que nunca. Y el tráfico se multiplicó por diez en seis meses.</p>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--amber3);box-shadow:0 0 0 2px var(--amber3)"></div>
+      <div class="tl-year">2023–Hoy · El presente</div>
+      <div class="tl-title">11 empresas, 6 idiomas y la misma filosofía</div>
+      <div class="tl-body">
+        <p>Hoy AutoCompara compara 11 de las principales empresas de alquiler de coches en España y Europa: Sixt, Enterprise, Goldcar, Hertz, Europcar, Avis, Budget, Thrifty, Record Go, Centauro e InterRent. La plataforma está disponible en español, inglés, francés, alemán, italiano y portugués.</p>
+        <p>Más de 180.000 conductores han utilizado AutoCompara. Y la filosofía sigue siendo exactamente la misma que la noche en aquel hotel de Marbella: <strong>llevarte al precio real, sin intermediarios, con todo ya listo.</strong></p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Pullquote -->
+  <div class="pullquote">
+    "No creamos AutoCompara para ganar dinero con tus reservas. Lo creamos porque estábamos hartos de perder el nuestro sin entender por qué."
+    <cite>— Carlos M., cofundador de AutoCompara</cite>
+  </div>
+
+  <!-- Values -->
+  <div class="values-section">
+    <div class="values-title">Lo que nos mueve</div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">🔍</div>
+        <div class="value-name">Transparencia total</div>
+        <div class="value-desc">No cobramos comisión. No tenemos acuerdos con ninguna rentadora. Te mostramos todo sin filtros comerciales.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">⚡</div>
+        <div class="value-name">Tu tiempo es sagrado</div>
+        <div class="value-desc">Rellenar el mismo formulario cinco veces es tiempo robado. Por eso lo haces una sola vez y nosotros hacemos el resto.</div>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🛡️</div>
+        <div class="value-name">Webs oficiales siempre</div>
+        <div class="value-desc">Cuando clicas, vas directamente a la web de la empresa. Sin intermediarios, sin capas ocultas, sin sorpresas al llegar.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Team -->
+  <div class="section-label">El equipo</div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar" style="background:linear-gradient(135deg,#d4850a,#f0a030)">CM</div>
+      <div class="team-name">Carlos M.</div>
+      <div class="team-role">Cofundador & CEO</div>
+      <div class="team-bio">Ex consultor de empresas turísticas. Ha alquilado coches en 23 países y todavía le duele la factura de Málaga de 2017.</div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:linear-gradient(135deg,#1a6b5c,#3db898)">MG</div>
+      <div class="team-name">Miguel G.</div>
+      <div class="team-role">Cofundador & CTO</div>
+      <div class="team-bio">Ingeniero de software. Lleva más horas depurando URLs de rentadoras que durmiendo. Conduce una bicicleta por convicción.</div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar" style="background:linear-gradient(135deg,#7c4dcc,#a87ce0)">LR</div>
+      <div class="team-name">Lucía R.</div>
+      <div class="team-role">Cofundadora & COO</div>
+      <div class="team-bio">15 años en el sector turístico. Conoce cada rentadora por dentro y por fuera. Es la razón por la que las descripciones de cada empresa son tan precisas.</div>
+    </div>
+  </div>
+
+  <!-- CTA back -->
+  <div style="text-align:center;margin-top:56px;padding:36px;background:#fff;border:1px solid var(--border);border-radius:20px;">
+    <div style="font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--brown);margin-bottom:10px;">¿Listo para encontrar el mejor precio?</div>
+    <p style="color:var(--muted);font-size:.88rem;margin-bottom:20px;">Vuelve al comparador y encuentra tu coche en 30 segundos.</p>
+    <a href="autocompara.html" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--teal),#0f4a3c);color:#fff;padding:14px 30px;border-radius:12px;font-weight:700;font-size:.95rem;text-decoration:none;transition:all .2s;box-shadow:0 6px 20px rgba(26,107,92,.3);">🚗 Ir al comparador →</a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="page-footer">
+  <div class="pf-links">
+    <a href="autocompara.html" class="pf-link">🚗 Comparador</a>
+    <a href="historia.html"    class="pf-link">📖 Nuestra Historia</a>
+    <a href="motor.html"       class="pf-link">🏎️ El Mundo del Motor</a>
+    <a href="https://www.instagram.com/autocompara" target="_blank" class="pf-link">Instagram</a>
+    <a href="https://www.linkedin.com/company/autocompara" target="_blank" class="pf-link">LinkedIn</a>
+    <a href="https://x.com/autocompara" target="_blank" class="pf-link">X / Twitter</a>
+  </div>
+  <strong>AutoCompara</strong> · Comparador gratuito de alquiler de coches<br>
+  <span id="cpYear"></span> © AutoCompara™ · Todos los derechos reservados · Diseño protegido
+  <script>document.getElementById('cpYear').textContent=new Date().getFullYear();</script>
+</footer>
+</body>
+</html>

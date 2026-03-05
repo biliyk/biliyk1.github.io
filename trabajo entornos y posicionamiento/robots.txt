@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Páginas principales
+Allow: /autocompara.html
+Allow: /historia.html
+Allow: /motor.html
+
+# Archivos de referencia SEO
+Allow: /sitemap.xml
+
+# Bloquear recursos innecesarios para crawlers
+Disallow: /tmp/
+Disallow: /private/
+Disallow: /*.log$

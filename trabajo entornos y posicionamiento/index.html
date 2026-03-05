@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AutoCompara © — Best price car rental</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand:#f5f0e8;--cream:#faf7f2;--brown:#2c1e0f;--brown2:#4a3728;
+  --amber:#d4850a;--amber2:#f0a030;--amber3:#ffc55a;
+  --teal:#1a6b5c;--teal2:#2a8a72;--teal3:#3db898;
+  --muted:#8a7a68;--border:#ddd3c0;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--brown);font-family:'Outfit',sans-serif;overflow-x:hidden;}
+
+/* HERO */
+.hero-band{background:linear-gradient(135deg,#1a3a2a 0%,#0f2818 45%,#1a4535 100%);position:relative;overflow:hidden;padding:0 24px 90px;}
+.hero-band::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 75% 55% at 72% 55%,rgba(61,184,152,.13) 0%,transparent 68%),radial-gradient(ellipse 45% 75% at 8% 85%,rgba(212,133,10,.10) 0%,transparent 58%);pointer-events:none;}
+.hero-band::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent 5%,var(--amber3) 35%,var(--teal3) 65%,transparent 95%);}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0 38px;position:relative;z-index:2;flex-wrap:wrap;gap:12px;}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.7rem;color:#fff;letter-spacing:-.5px;display:flex;align-items:center;gap:10px;}
+.logo-dot{width:9px;height:9px;background:var(--amber3);border-radius:50%;}
+.nav-center{display:flex;gap:6px;align-items:center;flex-wrap:wrap;}
+.nav-link{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:100px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.82);font-size:.78rem;font-weight:600;text-decoration:none;transition:all .2s;white-space:nowrap;}
+.nav-link:hover{background:rgba(255,255,255,.18);color:#fff;border-color:rgba(255,255,255,.3);}
+.nav-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.social-row{display:flex;gap:6px;}
+.soc-btn{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.72);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .2s;flex-shrink:0;}
+.soc-btn svg{width:15px;height:15px;}
+.soc-btn:hover{background:var(--amber);border-color:var(--amber);color:#fff;transform:translateY(-2px);}
+.trust-pill{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(8px);padding:7px 16px;border-radius:100px;color:rgba(255,255,255,.85);font-size:.78rem;font-weight:500;}
+.trust-pill .star{color:var(--amber3);}
+
+/* Language switcher */
+.lang-switcher{display:flex;gap:4px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:100px;padding:4px;}
+.lang-btn{padding:5px 10px;border-radius:100px;border:none;background:transparent;color:rgba(255,255,255,.55);font-family:'Outfit',sans-serif;font-size:.75rem;font-weight:600;cursor:pointer;transition:all .2s;letter-spacing:.5px;}
+.lang-btn.active{background:var(--amber);color:#fff;}
+.lang-btn:hover:not(.active){color:#fff;background:rgba(255,255,255,.12);}
+
+.hero-content{position:relative;z-index:2;max-width:700px;margin:0 auto;text-align:center;}
+.hero-kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(212,133,10,.2);border:1px solid rgba(212,133,10,.4);color:var(--amber3);font-size:.77rem;font-weight:600;letter-spacing:1.6px;text-transform:uppercase;padding:6px 18px;border-radius:100px;margin-bottom:20px;}
+.hero-h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2.2rem,5vw,3.7rem);line-height:1.08;color:#fff;margin-bottom:16px;letter-spacing:-1px;}
+.hero-h1 em{font-style:italic;color:var(--amber3);}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,.62);line-height:1.7;max-width:520px;margin:0 auto 32px;font-weight:300;}
+.stats-row{display:flex;justify-content:center;flex-wrap:wrap;margin-bottom:42px;}
+.stat-item{padding:0 20px;border-right:1px solid rgba(255,255,255,.12);text-align:center;}
+.stat-item:last-child{border-right:none;}
+.stat-num{font-family:'Playfair Display',serif;font-weight:700;font-size:1.5rem;color:#fff;display:block;}
+.stat-label{font-size:.67rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;display:block;margin-top:2px;}
+
+/* SEARCH CARD */
+.search-float{max-width:980px;margin:0 auto;position:relative;z-index:10;}
+.search-card{background:#fff;border-radius:24px;box-shadow:0 28px 90px rgba(44,30,15,.25),0 2px 8px rgba(44,30,15,.08);overflow:hidden;}
+.card-tabs{display:flex;background:var(--sand);border-bottom:1px solid var(--border);}
+.card-tab{padding:14px 24px;font-size:.83rem;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;display:flex;align-items:center;gap:7px;}
+.card-tab.active{color:var(--teal);border-bottom-color:var(--teal);background:#fff;}
+.card-body{padding:24px 28px 28px;}
+.row4{display:grid;grid-template-columns:2fr 1.2fr 1.2fr 1fr;gap:12px;margin-bottom:12px;}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:18px;}
+.field{display:flex;flex-direction:column;gap:5px;}
+.field label{font-size:.66rem;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);}
+.field input,.field select{border:1.5px solid var(--border);border-radius:10px;padding:10px 12px;font-family:'Outfit',sans-serif;font-size:.9rem;color:var(--brown);background:var(--cream);outline:none;transition:border-color .2s,box-shadow .2s,background .2s;-webkit-appearance:none;width:100%;}
+.field input:focus,.field select:focus{border-color:var(--teal);background:#fff;box-shadow:0 0 0 3px rgba(26,107,92,.1);}
+.field input::placeholder{color:#b0a090;}
+.section-head{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.section-head span{font-size:.66rem;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);}
+.section-head::after{content:'';flex:1;height:1px;background:var(--border);}
+.divider{height:1px;background:var(--border);margin:16px 0;}
+
+/* CAR SELECTOR */
+.car-selector-wrap{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;margin-bottom:18px;}
+.car-types{display:flex;gap:7px;flex-wrap:wrap;}
+.car-chip{display:flex;align-items:center;gap:6px;padding:8px 14px;border:1.5px solid var(--border);border-radius:100px;cursor:pointer;transition:all .2s;font-size:.8rem;font-weight:500;color:var(--brown2);background:var(--cream);user-select:none;white-space:nowrap;}
+.car-chip .ci{font-size:.92rem;}
+.car-chip:hover{border-color:var(--amber);background:rgba(212,133,10,.05);}
+.car-chip.active{border-color:var(--amber);background:rgba(212,133,10,.1);color:var(--brown);font-weight:600;}
+.car-preview{width:196px;height:108px;flex-shrink:0;border:1.5px solid var(--border);border-radius:16px;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;transition:background .4s;}
+.car-preview svg{width:168px;height:88px;}
+.car-preview .car-label{position:absolute;bottom:5px;left:0;right:0;text-align:center;font-size:.63rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
+@keyframes carIn{from{transform:translateX(28px) scale(.86);opacity:0;}to{transform:none;opacity:1;}}
+.car-anim{animation:carIn .45s cubic-bezier(.34,1.56,.64,1) both;}
+
+/* COMPANIES */
+.companies-wrap{margin-bottom:18px;overflow-x:auto;padding-bottom:4px;}
+.companies-grid{display:grid;grid-template-columns:repeat(11,1fr);gap:7px;min-width:680px;}
+.co-toggle{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 5px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;transition:all .2s;background:var(--cream);user-select:none;position:relative;}
+.co-name{font-size:.63rem;font-weight:600;color:var(--muted);letter-spacing:.2px;transition:color .2s;text-align:center;line-height:1.2;}
+.co-logo-text{font-family:'Playfair Display',serif;font-weight:700;font-size:.85rem;transition:all .2s;opacity:.35;text-align:center;}
+.co-toggle:hover .co-logo-text{opacity:.65;}
+.co-toggle.active{border-color:transparent;background:#fff;box-shadow:0 2px 10px rgba(44,30,15,.1),inset 0 0 0 1.5px var(--teal);}
+.co-toggle.active .co-logo-text{opacity:1;}
+.co-toggle.active .co-name{color:var(--teal);}
+.co-check{position:absolute;top:4px;right:5px;width:12px;height:12px;background:var(--teal);border-radius:50%;display:none;align-items:center;justify-content:center;color:#fff;font-size:6px;font-weight:900;}
+.co-toggle.active .co-check{display:flex;}
+
+/* DAYS BAR */
+.days-bar{display:none;align-items:center;gap:10px;padding:10px 14px;background:rgba(26,107,92,.06);border:1px solid rgba(26,107,92,.18);border-radius:10px;margin-bottom:16px;font-size:.83rem;color:var(--brown2);flex-wrap:wrap;}
+.days-badge{background:var(--teal);color:#fff;padding:3px 11px;border-radius:100px;font-weight:700;font-size:.79rem;white-space:nowrap;}
+.days-tip{color:var(--muted);font-size:.76rem;}
+
+/* CTA */
+.cta-btn{width:100%;padding:16px 24px;background:linear-gradient(135deg,var(--teal),#0f4a3c);color:#fff;border:none;border-radius:12px;font-family:'Outfit',sans-serif;font-size:1.02rem;font-weight:600;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;gap:10px;position:relative;overflow:hidden;}
+.cta-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.12),transparent);opacity:0;transition:opacity .2s;}
+.cta-btn:hover::before{opacity:1;}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(26,107,92,.4);}
+.cta-btn:active{transform:none;}
+.cta-note{text-align:center;margin-top:10px;font-size:.76rem;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:6px;}
+
+/* TRUST BAR */
+.trust-bar{max-width:980px;margin:32px auto;padding:0 24px;display:flex;justify-content:center;flex-wrap:wrap;}
+.trust-item{display:flex;align-items:center;gap:8px;padding:0 20px;border-right:1px solid var(--border);font-size:.8rem;color:var(--brown2);font-weight:500;}
+.trust-item:last-child{border-right:none;}
+.trust-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--amber),var(--amber2));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
+
+/* HOW */
+.how-section{max-width:980px;margin:0 auto 52px;padding:0 24px;}
+.section-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.8rem;color:var(--brown);margin-bottom:5px;}
+.section-sub{color:var(--muted);font-size:.87rem;margin-bottom:28px;}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.step-card{background:#fff;border:1px solid var(--border);border-radius:18px;padding:24px 20px;position:relative;overflow:hidden;}
+.step-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.step-card:nth-child(1)::before{background:linear-gradient(90deg,var(--amber),var(--amber2));}
+.step-card:nth-child(2)::before{background:linear-gradient(90deg,var(--teal),var(--teal2));}
+.step-card:nth-child(3)::before{background:linear-gradient(90deg,#7c4dcc,#a87ce0);}
+.step-num{font-family:'Playfair Display',serif;font-size:2.7rem;font-weight:900;color:var(--border);line-height:1;margin-bottom:10px;}
+.step-title{font-weight:700;font-size:.96rem;margin-bottom:7px;color:var(--brown);}
+.step-desc{font-size:.82rem;color:var(--muted);line-height:1.6;}
+
+/* RESULTS */
+.results-section{max-width:980px;margin:0 auto 52px;padding:0 24px;display:none;}
+.results-header{display:flex;align-items:baseline;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
+.results-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.5rem;color:var(--brown);}
+.results-meta{font-size:.83rem;color:var(--muted);}
+.result-card{background:#fff;border:1.5px solid var(--border);border-radius:16px;padding:18px 22px;display:flex;align-items:center;gap:16px;transition:all .25s;cursor:pointer;text-decoration:none;color:inherit;margin-bottom:10px;animation:riseIn .35s ease both;position:relative;overflow:hidden;}
+.result-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--border);transition:background .2s,width .2s;border-radius:4px 0 0 4px;}
+.result-card:hover{border-color:var(--amber);box-shadow:0 4px 24px rgba(44,30,15,.1);transform:translateY(-2px);}
+.result-card:hover::before{background:linear-gradient(180deg,var(--amber),var(--amber2));width:5px;}
+@keyframes riseIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+.rc-logo-box{width:78px;height:46px;border:1px solid var(--border);border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--cream);}
+.rc-logo-text{font-family:'Playfair Display',serif;font-weight:700;font-size:.9rem;}
+.rc-body{flex:1;min-width:0;}
+.rc-name{font-weight:700;font-size:.95rem;margin-bottom:3px;color:var(--brown);}
+.rc-desc{font-size:.79rem;color:var(--muted);line-height:1.5;margin-bottom:6px;}
+.rc-tags{display:flex;gap:5px;flex-wrap:wrap;}
+.rc-tag{font-size:.67rem;padding:2px 8px;border-radius:100px;border:1px solid var(--border);color:var(--muted);background:var(--cream);font-weight:500;}
+.rc-tag.gold{border-color:rgba(212,133,10,.35);color:var(--amber);background:rgba(212,133,10,.06);}
+.rc-action{flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:5px;}
+.rc-btn{background:linear-gradient(135deg,var(--amber),var(--amber2));color:#fff;padding:9px 17px;border-radius:8px;font-weight:700;font-size:.82rem;display:flex;align-items:center;gap:5px;white-space:nowrap;box-shadow:0 3px 10px rgba(212,133,10,.2);}
+.rc-meta{font-size:.7rem;color:var(--muted);text-align:right;}
+
+/* PROOF */
+.proof-section{background:linear-gradient(135deg,#f0ebe0,#e8e0d0);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:48px 24px;}
+.proof-inner{max-width:980px;margin:0 auto;}
+.proof-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin-bottom:20px;color:var(--brown);}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.review-card{background:#fff;border-radius:14px;padding:18px;box-shadow:0 2px 10px rgba(44,30,15,.07);}
+.review-stars{color:var(--amber);font-size:.82rem;margin-bottom:8px;}
+.review-text{font-size:.82rem;color:var(--brown2);line-height:1.6;margin-bottom:10px;font-style:italic;}
+.reviewer{display:flex;align-items:center;gap:9px;}
+.reviewer-avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:.8rem;flex-shrink:0;}
+.reviewer-name{font-weight:600;font-size:.79rem;color:var(--brown);}
+.reviewer-loc{font-size:.7rem;color:var(--muted);}
+
+footer{background:var(--brown);color:rgba(255,255,255,.4);padding:40px 40px 24px;font-size:.77rem;line-height:1.8;}
+footer strong{color:rgba(255,255,255,.76);}
+.footer-soc{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .2s;flex-shrink:0;}
+.footer-soc svg{width:15px;height:15px;}
+.footer-soc:hover{background:var(--amber);border-color:var(--amber);color:#fff;transform:translateY(-2px);}
+.footer-link{display:block;font-size:.82rem;color:rgba(255,255,255,.55);text-decoration:none;padding:5px 0;border-bottom:1px solid rgba(255,255,255,.07);transition:color .2s;display:flex;align-items:center;gap:7px;margin-bottom:2px;}
+.footer-link:hover{color:var(--amber3);}
+@media(max-width:640px){.footer-grid{grid-template-columns:1fr !important;}}
+
+@media(max-width:780px){
+  .row4{grid-template-columns:1fr 1fr;}
+  .row3{grid-template-columns:1fr 1fr;}
+  .car-selector-wrap{grid-template-columns:1fr;}
+  .car-preview{display:none;}
+  .steps-grid{grid-template-columns:1fr;}
+  .reviews-grid{grid-template-columns:1fr;}
+  .trust-item{border-right:none;border-bottom:1px solid var(--border);padding:9px 0;width:100%;}
+  .card-body{padding:16px 14px;}
+  .result-card{flex-wrap:wrap;}
+  .rc-action{flex-direction:row;width:100%;justify-content:space-between;align-items:center;}
+  .lang-btn{padding:4px 8px;font-size:.7rem;}
+}
+</style>
+</head>
+<body>
+
+<section class="hero-band">
+  <nav>
+    <div class="logo"><span class="logo-dot"></span>AutoCompara</div>
+    <div class="nav-center">
+      <a href="historia.html" class="nav-link">📖 <span data-i18n="navHistory">Nuestra Historia</span></a>
+      <a href="motor.html"   class="nav-link">🏎️ <span data-i18n="navMotor">El Mundo del Motor</span></a>
+    </div>
+    <div class="nav-right">
+      <div class="social-row">
+        <a href="https://www.instagram.com/autocompara" target="_blank" rel="noopener" class="soc-btn" title="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/company/autocompara" target="_blank" rel="noopener" class="soc-btn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://x.com/autocompara" target="_blank" rel="noopener" class="soc-btn" title="X (Twitter)">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+      </div>
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('fr')">FR</button>
+        <button class="lang-btn" onclick="setLang('de')">DE</button>
+        <button class="lang-btn" onclick="setLang('it')">IT</button>
+        <button class="lang-btn" onclick="setLang('pt')">PT</button>
+      </div>
+      <div class="trust-pill"><span class="star">★★★★★</span> <span data-i18n="trustPill">180.000 conductores satisfechos</span></div>
+    </div>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-kicker" data-i18n="kicker">🏆 Comparamos 11 empresas líderes</div>
+    <h1 class="hero-h1" data-i18n="h1ES">Paga solo lo que<br>el coche vale <em>de verdad</em></h1>
+    <p class="hero-sub" data-i18n="sub">Buscamos en Sixt, Enterprise, Goldcar, Hertz, Europcar, Avis, Budget, Thrifty, Record Go, Centauro e InterRent. Te llevamos directo con todo ya rellenado.</p>
+    <div class="stats-row">
+      <div class="stat-item"><span class="stat-num">11</span><span class="stat-label" data-i18n="statCompanies">Empresas</span></div>
+      <div class="stat-item"><span class="stat-num">0€</span><span class="stat-label" data-i18n="statCost">Coste buscar</span></div>
+      <div class="stat-item"><span class="stat-num">30s</span><span class="stat-label" data-i18n="statSpeed">Comparar todo</span></div>
+      <div class="stat-item"><span class="stat-num">−38%</span><span class="stat-label" data-i18n="statSaving">Ahorro medio</span></div>
+    </div>
+  </div>
+
+  <div class="search-float">
+    <div class="search-card">
+      <div class="card-tabs">
+        <div class="card-tab active">🚗 <span data-i18n="tabCar">Alquiler de coche</span></div>
+        <div class="card-tab" style="opacity:.4;pointer-events:none">✈️ <span data-i18n="tabFlight">Con vuelo (próximamente)</span></div>
+      </div>
+      <div class="card-body">
+
+        <div class="row4">
+          <div class="field">
+            <label data-i18n="labelCity">📍 Ciudad o aeropuerto</label>
+            <input type="text" id="ciudad" data-i18n-placeholder="placeholderCity">
+          </div>
+          <div class="field">
+            <label data-i18n="labelPickup">📅 Fecha recogida</label>
+            <input type="date" id="fechaR">
+          </div>
+          <div class="field">
+            <label data-i18n="labelReturn">📅 Fecha devolución</label>
+            <input type="date" id="fechaD">
+          </div>
+          <div class="field">
+            <label data-i18n="labelTimeP">⏰ Hora recogida</label>
+            <select id="horaR" data-i18n-hours="1"></select>
+          </div>
+        </div>
+
+        <div class="row3">
+          <div class="field">
+            <label data-i18n="labelTimeR">⏰ Hora devolución</label>
+            <select id="horaD" data-i18n-hours="1"></select>
+          </div>
+          <div class="field">
+            <label data-i18n="labelAge">🧑 Edad del conductor</label>
+            <select id="edad">
+              <option value="18" data-i18n="age18">18 años (recargo joven)</option>
+              <option value="21" data-i18n="age21">21 años</option>
+              <option value="25" selected data-i18n="age25">25 años o más</option>
+              <option value="30" data-i18n="age30">30 años o más</option>
+            </select>
+          </div>
+          <div class="field">
+            <label data-i18n="labelCountry">🌍 País de la licencia</label>
+            <select id="pais">
+              <option value="ES">España / Spain</option>
+              <option value="GB">Reino Unido / UK</option>
+              <option value="DE">Alemania / Deutschland</option>
+              <option value="FR">Francia / France</option>
+              <option value="IT">Italia / Italy</option>
+              <option value="PT">Portugal</option>
+              <option value="US">EE.UU. / USA</option>
+              <option value="NL">Países Bajos / Netherlands</option>
+              <option value="BE">Bélgica / Belgium</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        <div class="section-head"><span data-i18n="labelCarType">Tipo de vehículo</span></div>
+        <div class="car-selector-wrap">
+          <div class="car-types">
+            <div class="car-chip active" data-type="all"    onclick="selectCar(this,'all')"><span class="ci">🚗</span><span data-i18n="carAll">Todos</span></div>
+            <div class="car-chip"        data-type="mini"   onclick="selectCar(this,'mini')"><span class="ci">🚕</span><span data-i18n="carMini">Mini</span></div>
+            <div class="car-chip"        data-type="economy"onclick="selectCar(this,'economy')"><span class="ci">💶</span><span data-i18n="carEco">Económico</span></div>
+            <div class="car-chip"        data-type="compact"onclick="selectCar(this,'compact')"><span class="ci">🚙</span><span data-i18n="carCompact">Compacto</span></div>
+            <div class="car-chip"        data-type="suv"    onclick="selectCar(this,'suv')"><span class="ci">🚐</span><span data-i18n="carSuv">SUV / 4×4</span></div>
+            <div class="car-chip"        data-type="van"    onclick="selectCar(this,'van')"><span class="ci">🚌</span><span data-i18n="carVan">Furgoneta</span></div>
+            <div class="car-chip"        data-type="premium"onclick="selectCar(this,'premium')"><span class="ci">🏎️</span><span data-i18n="carPremium">Premium</span></div>
+          </div>
+          <div class="car-preview" id="carPreview">
+            <svg id="carSvg" viewBox="0 0 200 90" fill="none" xmlns="http://www.w3.org/2000/svg"></svg>
+            <div class="car-label" id="carLabel"></div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        <div class="section-head"><span data-i18n="labelCompanies">Buscar en estas 11 empresas</span></div>
+        <div class="companies-wrap">
+          <div class="companies-grid">
+            <div class="co-toggle active" data-company="sixt"       onclick="toggleCo(this)"><div class="co-check">✓</div><span class="co-logo-text" style="color:#e85c00">SIXT</span><span class="co-name">Sixt</span></div>
+            <div class="co-toggle active" data-company="enterprise"  onclick="toggleCo(this)"><div class="co-check">✓</div><span class="co-logo-text" style="color:#006f44">ENT.</span><span class="co-name">Enterprise</span></div>
+            <div class="co-toggle active" data-company="goldcar"     onclick="toggleCo(this)"><div class="co-check">✓</div><span class="co-logo-text" style="color:#c49a00">GOLD</span><span class="co-name">Goldcar</span></div>
+            <div class="co-toggle active" data-company="hertz"       onclick="toggleCo(this)"><div class="co-check">✓</div><span class="co-logo-text" style="color:#c9a800">HERTZ</span><span class="co-name">Hertz</span></div>
+            <div class="co-toggle active" data-company="europcar"    onclick="toggleCo(this)"><div class="co-check">✓</div><span class="co-logo-text" style="color:#007a40">EURO</span><span class="co-name">Europcar</span></div>
+            <div class="co-toggle active" data-company="avis"        onclick="toggleCo(this)"><div class="co-check">✓</div><span class="co-logo-text" style="color:#cc2200">AVIS</span><span class="co-name">Avis</span></div>
+            <div class="co-toggle active" data-company="budget"      onclick="toggleCo(this)"><div class="co-check">✓</div><span class="co-logo-text" style="color:#e06000">BDGT</span><span class="co-name">Budget</span></div>
+            <div class="co-toggle active" data-company="thrifty"     onclick="toggleCo(this)"><div class="co-check">✓</div><span class="co-logo-text" style="color:#0055bb">THRF</span><span class="co-name">Thrifty</span></div>
+            <div class="co-toggle active" data-company="recordgo"    onclick="toggleCo(this)"><div class="co-check">✓</div><span class="co-logo-text" style="color:#009933">REC</span><span class="co-name">Record Go</span></div>
+            <div class="co-toggle active" data-company="centauro"    onclick="toggleCo(this)"><div class="co-check">✓</div><span class="co-logo-text" style="color:#cc3300">CENT</span><span class="co-name">Centauro</span></div>
+            <div class="co-toggle active" data-company="interrent"   onclick="toggleCo(this)"><div class="co-check">✓</div><span class="co-logo-text" style="color:#005599">INTR</span><span class="co-name">InterRent</span></div>
+          </div>
+        </div>
+
+        <div class="days-bar" id="daysBar">
+          <span>📆</span>
+          <span class="days-badge" id="daysBadge"></span>
+          <span id="daysText" style="font-weight:600;color:var(--teal)"></span>
+          <span class="days-tip" id="daysTip"></span>
+        </div>
+
+        <button class="cta-btn" onclick="buscar()">
+          <span data-i18n="ctaBtn">Comparar las 11 empresas y ver el precio más bajo</span> <span>→</span>
+        </button>
+        <div class="cta-note"><span data-i18n="ctaNote">🔒 Sin registro · Sin comisiones · Directo a la web oficial</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="height:34px"></div>
+
+<div class="trust-bar">
+  <div class="trust-item"><div class="trust-icon">🔍</div><span data-i18n="trust1">Comparamos <strong>11 empresas</strong> en segundos</span></div>
+  <div class="trust-item"><div class="trust-icon">⚡</div><span data-i18n="trust2">Fechas <strong>ya rellenadas</strong> al llegar</span></div>
+  <div class="trust-item"><div class="trust-icon">💰</div><span data-i18n="trust3"><strong>Sin costes</strong> ocultos ni comisiones</span></div>
+  <div class="trust-item"><div class="trust-icon">🛡️</div><span data-i18n="trust4">Reservas en las <strong>webs oficiales</strong></span></div>
+</div>
+
+<section style="padding:48px 0 34px">
+  <div class="how-section">
+    <p class="section-title" data-i18n="howTitle">¿Cómo funciona?</p>
+    <p class="section-sub" data-i18n="howSub">En menos de un minuto encuentras la mejor opción. Sin colas, sin llamadas, sin perder el tiempo.</p>
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-num">01</div><div class="step-title" data-i18n="step1t">Rellenas una sola vez</div><div class="step-desc" data-i18n="step1d">Ciudad, fechas, tipo de coche y edad del conductor. Una sola vez para las 11 empresas. No guardamos ningún dato tuyo.</div></div>
+      <div class="step-card"><div class="step-num">02</div><div class="step-title" data-i18n="step2t">Ves todas las opciones</div><div class="step-desc" data-i18n="step2d">Te mostramos las 11 empresas con su perfil y ventajas. Tú decides cuál visitar — o las abres todas en paralelo para comparar precios reales.</div></div>
+      <div class="step-card"><div class="step-num">03</div><div class="step-title" data-i18n="step3t">Llegas con todo listo</div><div class="step-desc" data-i18n="step3d">Al hacer clic vas directo a la web oficial con tus fechas, ciudad y tipo de coche ya seleccionados. Solo falta elegir extras y pagar.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="results-section" id="resultsSection">
+  <div class="results-header">
+    <div class="results-title" data-i18n="resultsTitle">Tus resultados</div>
+    <div class="results-meta" id="resultsMeta"></div>
+  </div>
+  <div id="resultCards"></div>
+  <div style="background:rgba(26,107,92,.06);border:1px solid rgba(26,107,92,.15);border-radius:12px;padding:13px 17px;font-size:.8rem;color:var(--muted);margin-top:8px;">
+    💡 <strong style="color:var(--teal)" data-i18n="tipTitle">Consejo:</strong> <span data-i18n="tipText">Abre varias pestañas a la vez para comparar precios en tiempo real. Si encuentras algo que te conviene, resérvalo cuanto antes — los precios cambian.</span>
+  </div>
+</div>
+
+<div class="proof-section">
+  <div class="proof-inner">
+    <p class="proof-title" data-i18n="reviewsTitle">Lo que dicen nuestros usuarios</p>
+    <div class="reviews-grid">
+      <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text" data-i18n="review1">"Encontré el mismo coche en Goldcar 40€ más barato que en la app de mi banco. Sin registrarse ni nada, en 2 minutos ya tenía la reserva hecha."</div><div class="reviewer"><div class="reviewer-avatar" style="background:linear-gradient(135deg,#d4850a,#f0a030)">ML</div><div><div class="reviewer-name">María L.</div><div class="reviewer-loc">Madrid · Tenerife</div></div></div></div>
+      <div class="review-card"><div class="review-stars">★★★★★</div><div class="review-text" data-i18n="review2">"Comparé tres empresas en 5 minutos. Lo mejor es que llegas con las fechas ya puestas. Reservé en Sixt sin ningún problema."</div><div class="reviewer"><div class="reviewer-avatar" style="background:linear-gradient(135deg,#1a6b5c,#3db898)">JR</div><div><div class="reviewer-name">Jorge R.</div><div class="reviewer-loc">Barcelona · Málaga</div></div></div></div>
+      <div class="review-card"><div class="review-stars">★★★★☆</div><div class="review-text" data-i18n="review3">"Por fin un comparador que va directo a la web oficial. Con Record Go ahorré bastante para una semana en Alicante."</div><div class="reviewer"><div class="reviewer-avatar" style="background:linear-gradient(135deg,#7c4dcc,#a87ce0)">AM</div><div><div class="reviewer-name">Ana M.</div><div class="reviewer-loc">Sevilla · Alicante</div></div></div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="max-width:980px;margin:0 auto;">
+
+    <!-- Footer top grid -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;margin-bottom:28px;text-align:left;">
+
+      <!-- Brand col -->
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:900;color:rgba(255,255,255,.9);margin-bottom:8px;">AutoCompara</div>
+        <div style="font-size:.8rem;color:rgba(255,255,255,.45);line-height:1.7;margin-bottom:16px;" data-i18n="footer">Comparador gratuito · Sin comisiones · Webs oficiales</div>
+        <!-- Social icons -->
+        <div style="display:flex;gap:8px;">
+          <a href="https://www.instagram.com/autocompara" target="_blank" rel="noopener" class="footer-soc" title="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/autocompara" target="_blank" rel="noopener" class="footer-soc" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://x.com/autocompara" target="_blank" rel="noopener" class="footer-soc" title="X / Twitter">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Pages col -->
+      <div>
+        <div style="font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:12px;" data-i18n="footerPages">Páginas</div>
+        <a href="historia.html" class="footer-link">📖 <span data-i18n="navHistory">Nuestra Historia</span></a>
+        <a href="motor.html"    class="footer-link">🏎️ <span data-i18n="navMotor">El Mundo del Motor</span></a>
+      </div>
+
+      <!-- Brands col -->
+      <div>
+        <div style="font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:12px;" data-i18n="footerBrandsTitle">Empresas comparadas</div>
+        <div style="font-size:.75rem;color:rgba(255,255,255,.28);line-height:2;">
+          Sixt · Enterprise · Goldcar<br>Hertz · Europcar · Avis<br>Budget · Thrifty · Record Go<br>Centauro · InterRent
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Divider -->
+    <div style="border-top:1px solid rgba(255,255,255,.1);padding-top:16px;">
+      <div style="font-size:.75rem;color:rgba(255,255,255,.42);display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;">
+        <span id="copyrightLine"></span>
+        <span style="color:rgba(255,255,255,.18)">·</span>
+        <span data-i18n="copyrightRights">Todos los derechos reservados</span>
+        <span style="color:rgba(255,255,255,.18)">·</span>
+        <span data-i18n="copyrightNote">Diseño y desarrollo protegidos. Prohibida su reproducción sin autorización.</span>
+      </div>
+      <div style="font-size:.66rem;color:rgba(255,255,255,.2);text-align:center;" data-i18n="copyrightBrands">
+        Las marcas mencionadas son propiedad de sus respectivos titulares. AutoCompara no tiene relación comercial con dichas marcas.
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+/* ══════════════════════════════════════════
+   i18n TRANSLATIONS
+══════════════════════════════════════════ */
+const T = {
+  es: {
+    trustPill:'180.000 conductores satisfechos', kicker:'🏆 Comparamos 11 empresas líderes',
+    h1ES:'Paga solo lo que<br>el coche vale <em>de verdad</em>',
+    sub:'Buscamos en Sixt, Enterprise, Goldcar, Hertz, Europcar, Avis, Budget, Thrifty, Record Go, Centauro e InterRent. Te llevamos directo con todo ya rellenado.',
+    statCompanies:'Empresas', statCost:'Coste buscar', statSpeed:'Comparar todo', statSaving:'Ahorro medio',
+    tabCar:'Alquiler de coche', tabFlight:'Con vuelo (próximamente)',
+    labelCity:'📍 Ciudad o aeropuerto', placeholderCity:'Ej: Madrid, Aeropuerto BCN, Málaga...',
+    labelPickup:'📅 Fecha recogida', labelReturn:'📅 Fecha devolución',
+    labelTimeP:'⏰ Hora recogida', labelTimeR:'⏰ Hora devolución',
+    labelAge:'🧑 Edad del conductor', labelCountry:'🌍 País de la licencia',
+    age18:'18 años (recargo joven)', age21:'21 años', age25:'25 años o más', age30:'30 años o más',
+    labelCarType:'Tipo de vehículo', labelCompanies:'Buscar en estas 11 empresas',
+    carAll:'Todos', carMini:'Mini', carEco:'Económico', carCompact:'Compacto', carSuv:'SUV / 4×4', carVan:'Furgoneta', carPremium:'Premium',
+    ctaBtn:'Comparar las 11 empresas y ver el precio más bajo',
+    ctaNote:'🔒 Sin registro · Sin comisiones · Directo a la web oficial',
+    trust1:'Comparamos <strong>11 empresas</strong> en segundos', trust2:'Fechas <strong>ya rellenadas</strong> al llegar',
+    trust3:'<strong>Sin costes</strong> ocultos ni comisiones', trust4:'Reservas en las <strong>webs oficiales</strong>',
+    howTitle:'¿Cómo funciona?', howSub:'En menos de un minuto encuentras la mejor opción. Sin colas, sin llamadas.',
+    step1t:'Rellenas una sola vez', step1d:'Ciudad, fechas, tipo de coche y edad. Una sola vez para las 11 empresas.',
+    step2t:'Ves todas las opciones', step2d:'Te mostramos las 11 empresas con sus ventajas. Abre las que quieras en paralelo.',
+    step3t:'Llegas con todo listo', step3d:'Al hacer clic vas directo a la web oficial con todo seleccionado. Solo falta pagar.',
+    resultsTitle:'Tus resultados', tipTitle:'Consejo:', tipText:'Abre varias pestañas a la vez. Los precios cambian en tiempo real — reserva cuando veas una buena oferta.',
+    reviewsTitle:'Lo que dicen nuestros usuarios',
+    review1:'"Encontré el mismo coche en Goldcar 40€ más barato. Sin registrarme, en 2 minutos ya tenía la reserva hecha."',
+    review2:'"Comparé tres empresas en 5 minutos. Lo mejor: llegas con las fechas ya puestas."',
+    review3:'"Por fin un comparador que va a la web oficial directamente. Ahorré bastante con Record Go."',
+    footer:'Comparador gratuito · Sin comisiones · Webs oficiales',
+    navHistory:'Nuestra Historia', navMotor:'El Mundo del Motor',
+    footerPages:'Páginas', footerBrandsTitle:'Empresas comparadas',
+    copyrightRights:'Todos los derechos reservados',
+    copyrightNote:'Diseño y desarrollo protegidos. Prohibida su reproducción total o parcial sin autorización expresa.',
+    copyrightBrands:'Las marcas Sixt, Enterprise, Goldcar, Hertz, Europcar, Avis, Budget, Thrifty, Record Go, Centauro e InterRent son propiedad de sus respectivos titulares. AutoCompara no tiene relación comercial con dichas marcas.',
+    dayDay:'día', dayDays:'días', daysTipShort:'💡 Para estancias cortas, Goldcar y Centauro suelen ser los más baratos',
+    daysTipMid:'💡 Sixt y Enterprise ofrecen muy buen precio para esta duración',
+    daysTipLong:'💡 Para más de una semana busca tarifas semanales en Hertz o Europcar',
+    alertCity:'Escribe una ciudad o aeropuerto', alertCityPlaceholder:'⚠️ Introduce una ciudad o aeropuerto',
+    alertDates:'Selecciona las fechas de recogida y devolución', alertDateOrder:'La devolución debe ser posterior a la recogida',
+    alertCompany:'Selecciona al menos una empresa',
+    rcBtn:'Ver precios →',
+    coDesc:{
+      sixt:'Flota moderna con mucho coche de gama alta. App excelente para viajeros frecuentes y escapadas con estilo.',
+      enterprise:'La mayor red de alquiler del mundo. Reconocida por su atención al cliente y precios equilibrados.',
+      goldcar:'Especialistas en destinos de playa. Si vas a la costa española o Canarias, suelen tener el precio más bajo.',
+      hertz:'Marca mundial con amplia cobertura en aeropuertos. Programa Gold Plus Rewards con ventajas reales.',
+      europcar:'Líder en Europa. Muy buena opción si alquilas en aeropuertos europeos fuera de España.',
+      avis:'Clásico premium con más de 75 años. Preferred Club para clientes frecuentes y flota variada.',
+      budget:'La opción económica del grupo Avis. Mismo servicio y red pero con precios más ajustados.',
+      thrifty:'Tarifas competitivas para viajeros que buscan ahorro sin renunciar a buen servicio.',
+      recordgo:'Líder en España e Italia para destinos costeros. Precio excelente en temporada alta.',
+      centauro:'Especialista en la costa mediterránea. Muy competitivo en Alicante, Valencia y Murcia.',
+      interrent:'Marca low-cost de Europcar. Ideal para viajes cortos y ciudades con presupuesto ajustado.'
+    },
+    coHighlight:{sixt:'Gama alta',enterprise:'Mejor servicio',goldcar:'Más económico',hertz:'Más confianza',europcar:'Mejor Europa',avis:'75 años',budget:'Precio/calidad',thrifty:'Ahorro real',recordgo:'Rey del verano',centauro:'Mediterráneo',interrent:'Low-cost'}
+  },
+  en: {
+    trustPill:'180,000 satisfied drivers', kicker:'🏆 We compare 11 leading companies',
+    h1ES:'Pay only what<br>the car is <em>really</em> worth',
+    sub:'We search Sixt, Enterprise, Goldcar, Hertz, Europcar, Avis, Budget, Thrifty, Record Go, Centauro and InterRent. We take you straight there with everything pre-filled.',
+    statCompanies:'Companies', statCost:'Free to search', statSpeed:'Compare all', statSaving:'Avg saving',
+    tabCar:'Car rental', tabFlight:'With flight (coming soon)',
+    labelCity:'📍 City or airport', placeholderCity:'E.g.: Madrid, BCN Airport, Málaga...',
+    labelPickup:'📅 Pick-up date', labelReturn:'📅 Return date',
+    labelTimeP:'⏰ Pick-up time', labelTimeR:'⏰ Return time',
+    labelAge:'🧑 Driver\'s age', labelCountry:'🌍 Licence country',
+    age18:'18 years (young driver surcharge)', age21:'21 years', age25:'25 years or older', age30:'30 years or older',
+    labelCarType:'Vehicle type', labelCompanies:'Search in these 11 companies',
+    carAll:'All', carMini:'Mini', carEco:'Economy', carCompact:'Compact', carSuv:'SUV / 4×4', carVan:'Van', carPremium:'Premium',
+    ctaBtn:'Compare all 11 companies and find the lowest price',
+    ctaNote:'🔒 No registration · No fees · Direct to each official website',
+    trust1:'We compare <strong>11 companies</strong> in seconds', trust2:'Dates <strong>pre-filled</strong> when you arrive',
+    trust3:'<strong>No hidden costs</strong> or commissions', trust4:'Book on <strong>official websites</strong>',
+    howTitle:'How does it work?', howSub:'In under a minute, find the best option. No queues, no calls, no wasted time.',
+    step1t:'Fill in once', step1d:'City, dates, car type and driver age. Just once for all 11 companies.',
+    step2t:'See all options', step2d:'We show you all 11 companies with their profiles. Open as many as you want side by side.',
+    step3t:'Arrive ready', step3d:'One click takes you to the official website with everything pre-selected. Just pay.',
+    resultsTitle:'Your results', tipTitle:'Tip:', tipText:'Open several tabs at once to compare prices in real time. Book when you spot a good deal — prices change.',
+    reviewsTitle:'What our users say',
+    review1:'"I found the same car on Goldcar €40 cheaper than on my bank\'s app. No sign-up needed, reservation done in 2 minutes."',
+    review2:'"Compared three companies in 5 minutes. Best part: you arrive with the dates already filled in."',
+    review3:'"Finally a comparison site that goes straight to the official page. Saved a lot using Record Go."',
+    footer:'Free comparison · No commissions · Official websites',
+    navHistory:'Our Story', navMotor:'The Motor World',
+    footerPages:'Pages', footerBrandsTitle:'Companies compared',
+    copyrightRights:'All rights reserved',
+    copyrightNote:'Design and development protected. Reproduction in whole or in part without express permission is prohibited.',
+    copyrightBrands:'The brands Sixt, Enterprise, Goldcar, Hertz, Europcar, Avis, Budget, Thrifty, Record Go, Centauro and InterRent are the property of their respective owners. AutoCompara has no commercial relationship with these brands.',
+    dayDay:'day', dayDays:'days', daysTipShort:'💡 For short stays, Goldcar & Centauro are usually cheapest',
+    daysTipMid:'💡 Sixt and Enterprise offer great value for this duration',
+    daysTipLong:'💡 For 7+ days, look for weekly rates at Hertz or Europcar',
+    alertCity:'Enter a city or airport', alertCityPlaceholder:'⚠️ Enter a city or airport',
+    alertDates:'Please select pick-up and return dates', alertDateOrder:'Return date must be after pick-up date',
+    alertCompany:'Please select at least one company',
+    rcBtn:'See prices →',
+    coDesc:{
+      sixt:'Modern fleet with premium cars. Excellent app, perfect for frequent travellers and stylish getaways.',
+      enterprise:'The world\'s largest car rental network. Known for customer service and balanced pricing.',
+      goldcar:'Beach destination specialists. Best prices at Spanish coast and Canary Islands.',
+      hertz:'World brand with airport coverage. Gold Plus Rewards programme with real benefits.',
+      europcar:'European leader. Best option for European airports outside Spain.',
+      avis:'75+ year premium classic. Preferred Club for frequent renters and varied fleet.',
+      budget:'The economy option of the Avis group. Same network, lower prices.',
+      thrifty:'Competitive rates for budget travellers who still want good service.',
+      recordgo:'Leader in Spain and Italy for coastal destinations. Excellent prices in high season.',
+      centauro:'Mediterranean coast specialist. Very competitive in Alicante, Valencia and Murcia.',
+      interrent:'Europcar\'s low-cost brand. Ideal for short trips and city rentals on a budget.'
+    },
+    coHighlight:{sixt:'Premium fleet',enterprise:'Best service',goldcar:'Most affordable',hertz:'Most trusted',europcar:'Best in Europe',avis:'75 years',budget:'Value for money',thrifty:'Real savings',recordgo:'Summer king',centauro:'Mediterranean',interrent:'Low-cost'}
+  },
+  fr: {
+    trustPill:'180 000 conducteurs satisfaits', kicker:'🏆 Nous comparons 11 leaders',
+    h1ES:'Payez seulement ce que<br>la voiture vaut <em>vraiment</em>',
+    sub:'Nous cherchons chez Sixt, Enterprise, Goldcar, Hertz, Europcar, Avis, Budget, Thrifty, Record Go, Centauro et InterRent. Vous arrivez avec tout déjà renseigné.',
+    statCompanies:'Sociétés', statCost:'Recherche gratuite', statSpeed:'Tout comparer', statSaving:'Économie moy.',
+    tabCar:'Location de voiture', tabFlight:'Avec vol (bientôt)',
+    labelCity:'📍 Ville ou aéroport', placeholderCity:'Ex : Madrid, Aéroport BCN, Málaga...',
+    labelPickup:'📅 Date de prise en charge', labelReturn:'📅 Date de retour',
+    labelTimeP:'⏰ Heure de prise en charge', labelTimeR:'⏰ Heure de retour',
+    labelAge:'🧑 Âge du conducteur', labelCountry:'🌍 Pays du permis',
+    age18:'18 ans (supplément jeune)', age21:'21 ans', age25:'25 ans ou plus', age30:'30 ans ou plus',
+    labelCarType:'Type de véhicule', labelCompanies:'Rechercher dans ces 11 sociétés',
+    carAll:'Tous', carMini:'Mini', carEco:'Économique', carCompact:'Compacte', carSuv:'SUV / 4×4', carVan:'Utilitaire', carPremium:'Premium',
+    ctaBtn:'Comparer les 11 sociétés et trouver le prix le plus bas',
+    ctaNote:'🔒 Sans inscription · Sans commission · Vers les sites officiels',
+    trust1:'Nous comparons <strong>11 sociétés</strong> en quelques secondes', trust2:'Dates <strong>déjà renseignées</strong> à l\'arrivée',
+    trust3:'<strong>Aucun frais</strong> caché ni commission', trust4:'Réservations sur les <strong>sites officiels</strong>',
+    howTitle:'Comment ça marche ?', howSub:'En moins d\'une minute, trouvez la meilleure option.',
+    step1t:'Remplissez une seule fois', step1d:'Ville, dates, type de véhicule et âge. Une seule fois pour les 11 sociétés.',
+    step2t:'Voyez toutes les options', step2d:'Nous vous montrons les 11 sociétés. Ouvrez-en autant que vous voulez en parallèle.',
+    step3t:'Arrivez prêt', step3d:'Un clic vous emmène vers le site officiel avec tout pré-rempli. Il ne reste qu\'à payer.',
+    resultsTitle:'Vos résultats', tipTitle:'Conseil :', tipText:'Ouvrez plusieurs onglets pour comparer en temps réel. Les prix changent — réservez dès que vous trouvez une bonne offre.',
+    reviewsTitle:'Ce que disent nos utilisateurs',
+    review1:'"J\'ai trouvé la même voiture chez Goldcar 40 € moins cher que sur l\'appli de ma banque. Réservation faite en 2 minutes."',
+    review2:'"J\'ai comparé trois sociétés en 5 minutes. Le mieux : les dates sont déjà renseignées."',
+    review3:'"Enfin un comparateur qui va directement sur le site officiel. J\'ai économisé grâce à Record Go."',
+    footer:'Comparateur gratuit · Sans commission · Sites officiels',
+    navHistory:'Notre Histoire', navMotor:'Le Monde du Moteur',
+    footerPages:'Pages', footerBrandsTitle:'Sociétés comparées',
+    copyrightRights:'Tous droits réservés',
+    copyrightNote:'Design et développement protégés. Reproduction totale ou partielle interdite sans autorisation expresse.',
+    copyrightBrands:'Les marques Sixt, Enterprise, Goldcar, Hertz, Europcar, Avis, Budget, Thrifty, Record Go, Centauro et InterRent sont la propriété de leurs titulaires respectifs. AutoCompara n\'entretient aucune relation commerciale avec ces marques.',
+    dayDay:'jour', dayDays:'jours', daysTipShort:'💡 Pour les courts séjours, Goldcar et Centauro sont souvent les moins chers',
+    daysTipMid:'💡 Sixt et Enterprise offrent un excellent rapport qualité-prix pour cette durée',
+    daysTipLong:'💡 Pour 7+ jours, cherchez des tarifs hebdomadaires chez Hertz ou Europcar',
+    alertCity:'Entrez une ville ou un aéroport', alertCityPlaceholder:'⚠️ Entrez une ville ou un aéroport',
+    alertDates:'Veuillez sélectionner les dates', alertDateOrder:'La date de retour doit être postérieure à la prise en charge',
+    alertCompany:'Sélectionnez au moins une société', rcBtn:'Voir les prix →',
+    coDesc:{sixt:'Flotte moderne haut de gamme. Application excellente pour les voyageurs fréquents.',enterprise:'Le plus grand réseau mondial. Reconnu pour son service client et ses prix équilibrés.',goldcar:'Spécialistes des destinations balnéaires. Meilleurs prix sur les côtes espagnoles.',hertz:'Marque mondiale couvrant les aéroports. Programme Gold Plus Rewards avantageux.',europcar:'Leader en Europe. Meilleure option pour les aéroports européens.',avis:'Classique premium depuis 75 ans. Club Preferred pour clients fréquents.',budget:'Option économique du groupe Avis. Même réseau, prix plus bas.',thrifty:'Tarifs compétitifs pour voyageurs économes sans sacrifier le service.',recordgo:'Leader en Espagne et Italie pour les côtes. Excellent prix en haute saison.',centauro:'Spécialiste de la Méditerranée. Très compétitif à Alicante et Valencia.',interrent:'Marque low-cost d\'Europcar. Idéal pour courts séjours en ville.'},
+    coHighlight:{sixt:'Haut de gamme',enterprise:'Meilleur service',goldcar:'Plus économique',hertz:'Plus fiable',europcar:'Meilleur Europe',avis:'75 ans',budget:'Rapport qualité/prix',thrifty:'Vraies économies',recordgo:'Roi de l\'été',centauro:'Méditerranée',interrent:'Low-cost'}
+  },
+  de: {
+    trustPill:'180.000 zufriedene Fahrer', kicker:'🏆 Wir vergleichen 11 führende Anbieter',
+    h1ES:'Zahlen Sie nur, was<br>das Auto <em>wirklich</em> wert ist',
+    sub:'Wir suchen bei Sixt, Enterprise, Goldcar, Hertz, Europcar, Avis, Budget, Thrifty, Record Go, Centauro und InterRent. Sie kommen mit allem bereits ausgefüllt an.',
+    statCompanies:'Anbieter', statCost:'Kostenlose Suche', statSpeed:'Alles vergleichen', statSaving:'Ø Ersparnis',
+    tabCar:'Mietwagen', tabFlight:'Mit Flug (demnächst)',
+    labelCity:'📍 Stadt oder Flughafen', placeholderCity:'Z.B.: Madrid, Flughafen BCN, Málaga...',
+    labelPickup:'📅 Abholdatum', labelReturn:'📅 Rückgabedatum',
+    labelTimeP:'⏰ Abholzeit', labelTimeR:'⏰ Rückgabezeit',
+    labelAge:'🧑 Alter des Fahrers', labelCountry:'🌍 Land des Führerscheins',
+    age18:'18 Jahre (Junger-Fahrer-Zuschlag)', age21:'21 Jahre', age25:'25 Jahre oder älter', age30:'30 Jahre oder älter',
+    labelCarType:'Fahrzeugtyp', labelCompanies:'In diesen 11 Anbietern suchen',
+    carAll:'Alle', carMini:'Mini', carEco:'Wirtschaftlich', carCompact:'Kompakt', carSuv:'SUV / 4×4', carVan:'Transporter', carPremium:'Premium',
+    ctaBtn:'Alle 11 Anbieter vergleichen und günstigsten Preis finden',
+    ctaNote:'🔒 Ohne Anmeldung · Ohne Gebühren · Direkt zur offiziellen Website',
+    trust1:'Wir vergleichen <strong>11 Anbieter</strong> in Sekunden', trust2:'Daten <strong>bereits ausgefüllt</strong> beim Ankunft',
+    trust3:'<strong>Keine versteckten Kosten</strong> oder Provisionen', trust4:'Buchung auf <strong>offiziellen Websites</strong>',
+    howTitle:'Wie funktioniert es?', howSub:'In weniger als einer Minute finden Sie die beste Option.',
+    step1t:'Einmal ausfüllen', step1d:'Stadt, Daten, Fahrzeugtyp und Alter. Einmal für alle 11 Anbieter.',
+    step2t:'Alle Optionen sehen', step2d:'Wir zeigen Ihnen alle 11 Anbieter. Öffnen Sie so viele wie Sie möchten parallel.',
+    step3t:'Fertig ankommen', step3d:'Ein Klick führt Sie zur offiziellen Website mit allem vorausgefüllt.',
+    resultsTitle:'Ihre Ergebnisse', tipTitle:'Tipp:', tipText:'Öffnen Sie mehrere Tabs gleichzeitig. Preise ändern sich in Echtzeit — buchen Sie, wenn Sie ein gutes Angebot sehen.',
+    reviewsTitle:'Was unsere Nutzer sagen',
+    review1:'"Ich fand dasselbe Auto bei Goldcar 40 € günstiger als in meiner Bank-App. In 2 Minuten gebucht."',
+    review2:'"Drei Anbieter in 5 Minuten verglichen. Das Beste: die Daten sind bereits eingetragen."',
+    review3:'"Endlich ein Vergleich, der direkt zur offiziellen Seite führt. Mit Record Go viel gespart."',
+    footer:'Kostenloser Vergleich · Keine Provision · Offizielle Websites',
+    navHistory:'Unsere Geschichte', navMotor:'Die Welt des Motors',
+    footerPages:'Seiten', footerBrandsTitle:'Verglichene Unternehmen',
+    copyrightRights:'Alle Rechte vorbehalten',
+    copyrightNote:'Design und Entwicklung sind geschützt. Vervielfältigung ganz oder teilweise ohne ausdrückliche Genehmigung ist untersagt.',
+    copyrightBrands:'Die Marken Sixt, Enterprise, Goldcar, Hertz, Europcar, Avis, Budget, Thrifty, Record Go, Centauro und InterRent sind Eigentum ihrer jeweiligen Inhaber. AutoCompara steht in keiner Geschäftsbeziehung zu diesen Marken.',
+    dayDay:'Tag', dayDays:'Tage', daysTipShort:'💡 Für kurze Aufenthalte sind Goldcar und Centauro meist am günstigsten',
+    daysTipMid:'💡 Sixt und Enterprise bieten gutes Preis-Leistungs-Verhältnis',
+    daysTipLong:'💡 Für 7+ Tage nach Wochentarifen bei Hertz oder Europcar suchen',
+    alertCity:'Geben Sie eine Stadt oder einen Flughafen ein', alertCityPlaceholder:'⚠️ Stadt oder Flughafen eingeben',
+    alertDates:'Bitte Abholungs- und Rückgabedatum wählen', alertDateOrder:'Rückgabedatum muss nach dem Abholdatum liegen',
+    alertCompany:'Bitte mindestens einen Anbieter auswählen', rcBtn:'Preise ansehen →',
+    coDesc:{sixt:'Moderne Flotte mit Premiumfahrzeugen. Hervorragende App für Vielfahrer.',enterprise:'Weltweit größtes Mietwagennetz. Bekannt für Kundenservice und ausgewogene Preise.',goldcar:'Strandurlaub-Spezialisten. Beste Preise an der spanischen Küste.',hertz:'Weltmarke mit Flughafenabdeckung. Gold Plus Rewards mit echten Vorteilen.',europcar:'Europas Marktführer. Beste Option für europäische Flughäfen.',avis:'75+ Jahre Premium-Klassiker. Preferred Club für Stammkunden.',budget:'Günstige Option der Avis-Gruppe. Gleiches Netz, niedrigere Preise.',thrifty:'Wettbewerbsfähige Tarife ohne Abstriche beim Service.',recordgo:'Marktführer in Spanien und Italien für Küstenziele.',centauro:'Mittelmeerküsten-Spezialist. Sehr günstig in Alicante und Valencia.',interrent:'Europcar Low-Cost-Marke. Ideal für Kurzreisen und Städtetrips.'},
+    coHighlight:{sixt:'Premium',enterprise:'Bester Service',goldcar:'Günstigster',hertz:'Vertrauenswürdigster',europcar:'Bester in Europa',avis:'75 Jahre',budget:'Preis/Leistung',thrifty:'Echte Ersparnis',recordgo:'Sommer-König',centauro:'Mittelmeer',interrent:'Low-cost'}
+  },
+  it: {
+    trustPill:'180.000 guidatori soddisfatti', kicker:'🏆 Confrontiamo 11 aziende leader',
+    h1ES:'Paga solo quello che<br>l\'auto vale <em>davvero</em>',
+    sub:'Cerchiamo su Sixt, Enterprise, Goldcar, Hertz, Europcar, Avis, Budget, Thrifty, Record Go, Centauro e InterRent. Ti portiamo direttamente con tutto già compilato.',
+    statCompanies:'Aziende', statCost:'Ricerca gratuita', statSpeed:'Confronta tutto', statSaving:'Risparmio medio',
+    tabCar:'Noleggio auto', tabFlight:'Con volo (prossimamente)',
+    labelCity:'📍 Città o aeroporto', placeholderCity:'Es.: Madrid, Aeroporto BCN, Málaga...',
+    labelPickup:'📅 Data ritiro', labelReturn:'📅 Data restituzione',
+    labelTimeP:'⏰ Ora di ritiro', labelTimeR:'⏰ Ora di restituzione',
+    labelAge:'🧑 Età del conducente', labelCountry:'🌍 Paese della patente',
+    age18:'18 anni (supplemento giovane)', age21:'21 anni', age25:'25 anni o più', age30:'30 anni o più',
+    labelCarType:'Tipo di veicolo', labelCompanies:'Cerca in queste 11 aziende',
+    carAll:'Tutti', carMini:'Mini', carEco:'Economica', carCompact:'Compatta', carSuv:'SUV / 4×4', carVan:'Furgone', carPremium:'Premium',
+    ctaBtn:'Confronta le 11 aziende e trova il prezzo più basso',
+    ctaNote:'🔒 Senza registrazione · Senza commissioni · Diretto al sito ufficiale',
+    trust1:'Confrontiamo <strong>11 aziende</strong> in pochi secondi', trust2:'Date <strong>già compilate</strong> all\'arrivo',
+    trust3:'<strong>Nessun costo</strong> nascosto o commissione', trust4:'Prenotazioni sui <strong>siti ufficiali</strong>',
+    howTitle:'Come funziona?', howSub:'In meno di un minuto trovi la migliore opzione.',
+    step1t:'Compili una sola volta', step1d:'Città, date, tipo di auto ed età. Una sola volta per tutte le 11 aziende.',
+    step2t:'Vedi tutte le opzioni', step2d:'Ti mostriamo le 11 aziende con i loro vantaggi. Aprine quante vuoi in parallelo.',
+    step3t:'Arrivi con tutto pronto', step3d:'Un clic ti porta al sito ufficiale con tutto già selezionato. Manca solo il pagamento.',
+    resultsTitle:'I tuoi risultati', tipTitle:'Consiglio:', tipText:'Apri più schede contemporaneamente. I prezzi cambiano in tempo reale — prenota appena trovi un\'offerta conveniente.',
+    reviewsTitle:'Cosa dicono i nostri utenti',
+    review1:'"Ho trovato la stessa auto su Goldcar €40 più economica. Prenotazione fatta in 2 minuti, senza registrarmi."',
+    review2:'"Confrontate tre aziende in 5 minuti. Il meglio: le date sono già inserite."',
+    review3:'"Finalmente un comparatore che va direttamente al sito ufficiale. Ho risparmiato con Record Go."',
+    footer:'Comparatore gratuito · Senza commissioni · Siti ufficiali',
+    navHistory:'La Nostra Storia', navMotor:'Il Mondo del Motore',
+    footerPages:'Pagine', footerBrandsTitle:'Aziende confrontate',
+    copyrightRights:'Tutti i diritti riservati',
+    copyrightNote:'Design e sviluppo protetti. È vietata la riproduzione totale o parziale senza espressa autorizzazione.',
+    copyrightBrands:'I marchi Sixt, Enterprise, Goldcar, Hertz, Europcar, Avis, Budget, Thrifty, Record Go, Centauro e InterRent sono di proprietà dei rispettivi titolari. AutoCompara non ha alcuna relazione commerciale con tali marchi.',
+    dayDay:'giorno', dayDays:'giorni', daysTipShort:'💡 Per soggiorni brevi, Goldcar e Centauro sono spesso i più economici',
+    daysTipMid:'💡 Sixt ed Enterprise offrono ottimo rapporto qualità-prezzo per questa durata',
+    daysTipLong:'💡 Per 7+ giorni cerca tariffe settimanali su Hertz o Europcar',
+    alertCity:'Inserisci una città o aeroporto', alertCityPlaceholder:'⚠️ Inserisci una città o aeroporto',
+    alertDates:'Seleziona le date di ritiro e restituzione', alertDateOrder:'La data di restituzione deve essere successiva al ritiro',
+    alertCompany:'Seleziona almeno un\'azienda', rcBtn:'Vedi prezzi →',
+    coDesc:{sixt:'Flotta moderna con auto di lusso. App eccellente per viaggiatori frequenti.',enterprise:'La rete noleggio più grande al mondo. Nota per il servizio clienti e prezzi equilibrati.',goldcar:'Specialisti nelle destinazioni balneari. Prezzi imbattibili sulla costa spagnola.',hertz:'Brand mondiale con copertura aeroportuale. Programma Gold Plus Rewards vantaggioso.',europcar:'Leader in Europa. Ottima scelta negli aeroporti europei.',avis:'75+ anni di premium. Preferred Club per clienti abituali.',budget:'Opzione economica del gruppo Avis. Stessa rete, prezzi più bassi.',thrifty:'Tariffe competitive per chi cerca risparmio senza rinunciare al servizio.',recordgo:'Leader in Spagna e Italia per le coste. Prezzi ottimi in alta stagione.',centauro:'Specialista del Mediterraneo. Molto competitivo ad Alicante e Valencia.',interrent:'Brand low-cost di Europcar. Ideale per brevi soggiorni in città.'},
+    coHighlight:{sixt:'Premium',enterprise:'Miglior servizio',goldcar:'Più economico',hertz:'Più affidabile',europcar:'Miglior Europa',avis:'75 anni',budget:'Qualità/prezzo',thrifty:'Risparmio vero',recordgo:'Re dell\'estate',centauro:'Mediterraneo',interrent:'Low-cost'}
+  },
+  pt: {
+    trustPill:'180.000 condutores satisfeitos', kicker:'🏆 Comparamos 11 empresas líderes',
+    h1ES:'Pague apenas o que<br>o carro vale <em>de verdade</em>',
+    sub:'Pesquisamos na Sixt, Enterprise, Goldcar, Hertz, Europcar, Avis, Budget, Thrifty, Record Go, Centauro e InterRent. Levamos-te diretamente com tudo já preenchido.',
+    statCompanies:'Empresas', statCost:'Pesquisa grátis', statSpeed:'Comparar tudo', statSaving:'Poupança média',
+    tabCar:'Aluguer de carro', tabFlight:'Com voo (brevemente)',
+    labelCity:'📍 Cidade ou aeroporto', placeholderCity:'Ex.: Madrid, Aeroporto BCN, Málaga...',
+    labelPickup:'📅 Data de levantamento', labelReturn:'📅 Data de devolução',
+    labelTimeP:'⏰ Hora de levantamento', labelTimeR:'⏰ Hora de devolução',
+    labelAge:'🧑 Idade do condutor', labelCountry:'🌍 País da carta de condução',
+    age18:'18 anos (suplemento jovem)', age21:'21 anos', age25:'25 anos ou mais', age30:'30 anos ou mais',
+    labelCarType:'Tipo de veículo', labelCompanies:'Pesquisar nestas 11 empresas',
+    carAll:'Todos', carMini:'Mini', carEco:'Económico', carCompact:'Compacto', carSuv:'SUV / 4×4', carVan:'Carrinha', carPremium:'Premium',
+    ctaBtn:'Comparar as 11 empresas e encontrar o preço mais baixo',
+    ctaNote:'🔒 Sem registo · Sem comissões · Direto ao site oficial',
+    trust1:'Comparamos <strong>11 empresas</strong> em segundos', trust2:'Datas <strong>já preenchidas</strong> ao chegar',
+    trust3:'<strong>Sem custos</strong> escondidos ou comissões', trust4:'Reservas nos <strong>sites oficiais</strong>',
+    howTitle:'Como funciona?', howSub:'Em menos de um minuto encontras a melhor opção.',
+    step1t:'Preenches uma só vez', step1d:'Cidade, datas, tipo de carro e idade. Uma só vez para as 11 empresas.',
+    step2t:'Vês todas as opções', step2d:'Mostramos-te as 11 empresas com as suas vantagens. Abre quantas quiseres em paralelo.',
+    step3t:'Chegas com tudo pronto', step3d:'Um clique leva-te ao site oficial com tudo selecionado. Só falta pagar.',
+    resultsTitle:'Os teus resultados', tipTitle:'Dica:', tipText:'Abre vários separadores de uma vez. Os preços mudam em tempo real — reserva quando encontrares uma boa oferta.',
+    reviewsTitle:'O que dizem os nossos utilizadores',
+    review1:'"Encontrei o mesmo carro na Goldcar €40 mais barato. Sem me registar, reserva feita em 2 minutos."',
+    review2:'"Comparei três empresas em 5 minutos. O melhor: as datas já estão preenchidas."',
+    review3:'"Finalmente um comparador que vai diretamente ao site oficial. Poupei bastante com a Record Go."',
+    footer:'Comparador gratuito · Sem comissões · Sites oficiais',
+    navHistory:'A Nossa História', navMotor:'O Mundo do Motor',
+    footerPages:'Páginas', footerBrandsTitle:'Empresas comparadas',
+    copyrightRights:'Todos os direitos reservados',
+    copyrightNote:'Design e desenvolvimento protegidos. É proibida a reprodução total ou parcial sem autorização expressa.',
+    copyrightBrands:'As marcas Sixt, Enterprise, Goldcar, Hertz, Europcar, Avis, Budget, Thrifty, Record Go, Centauro e InterRent são propriedade dos seus respetivos titulares. A AutoCompara não tem qualquer relação comercial com essas marcas.',
+    dayDay:'dia', dayDays:'dias', daysTipShort:'💡 Para estadias curtas, Goldcar e Centauro costumam ser os mais baratos',
+    daysTipMid:'💡 Sixt e Enterprise oferecem ótima relação qualidade-preço para esta duração',
+    daysTipLong:'💡 Para 7+ dias procura tarifas semanais na Hertz ou Europcar',
+    alertCity:'Insere uma cidade ou aeroporto', alertCityPlaceholder:'⚠️ Insere uma cidade ou aeroporto',
+    alertDates:'Seleciona as datas de levantamento e devolução', alertDateOrder:'A devolução deve ser posterior ao levantamento',
+    alertCompany:'Seleciona pelo menos uma empresa', rcBtn:'Ver preços →',
+    coDesc:{sixt:'Frota moderna com muitos carros de luxo. App excelente para viajantes frequentes.',enterprise:'A maior rede de aluguer do mundo. Reconhecida pelo serviço ao cliente e preços equilibrados.',goldcar:'Especialistas em destinos de praia. Melhores preços na costa espanhola e Canárias.',hertz:'Marca mundial com cobertura em aeroportos. Programa Gold Plus Rewards vantajoso.',europcar:'Líder na Europa. Melhor opção para aeroportos europeus.',avis:'Clássico premium há 75 anos. Preferred Club para clientes frequentes.',budget:'Opção económica do grupo Avis. Mesma rede, preços mais baixos.',thrifty:'Tarifas competitivas para quem quer poupar sem abrir mão do serviço.',recordgo:'Líder em Espanha e Itália para destinos costeiros. Preços excelentes na época alta.',centauro:'Especialista no mediterrâneo espanhol. Muito competitivo em Alicante e Valência.',interrent:'Marca low-cost da Europcar. Ideal para curtas estadias e cidade com orçamento limitado.'},
+    coHighlight:{sixt:'Luxo',enterprise:'Melhor serviço',goldcar:'Mais económico',hertz:'Mais confiável',europcar:'Melhor Europa',avis:'75 anos',budget:'Qualidade/preço',thrifty:'Poupança real',recordgo:'Rei do verão',centauro:'Mediterrâneo',interrent:'Low-cost'}
+  }
+};
+
+/* ── Language state ── */
+let lang = 'es';
+const CY = new Date().getFullYear(); // current year, auto-updates each year
+
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase()===l));
+  applyTranslations();
+  updateDaysBar();
+  renderCar(selectedCar);
+}
+
+function t(key) { return T[lang][key] || T['es'][key] || key; }
+
+function applyTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const val = T[lang][key];
+    if (val !== undefined) el.innerHTML = val;
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    const val = T[lang][key];
+    if (val !== undefined) el.placeholder = val;
+  });
+  // Age options
+  ['age18','age21','age25','age30'].forEach((k,i) => {
+    const sel = document.getElementById('edad');
+    if (sel && sel.options[i]) sel.options[i].text = t(k);
+  });
+  // Dynamic copyright line with symbol + year
+  const cpEl = document.getElementById('copyrightLine');
+  if (cpEl) cpEl.innerHTML = `&copy; ${CY} AutoCompara&trade; &mdash; autocompara.com`;
+}
+
+/* ── Hours select builder ── */
+function buildHours(sel, defaultH='10:00') {
+  sel.innerHTML = '';
+  for (let h=6; h<=22; h++) {
+    ['00','30'].forEach(m => {
+      const v = `${String(h).padStart(2,'0')}:${m}`;
+      const o = document.createElement('option');
+      o.value = v; o.text = v;
+      if (v===defaultH) o.selected = true;
+      sel.appendChild(o);
+    });
+  }
+}
+buildHours(document.getElementById('horaR'),'10:00');
+buildHours(document.getElementById('horaD'),'10:00');
+
+/* ── Init dates ── */
+const today = new Date();
+const t1 = new Date(today); t1.setDate(today.getDate()+1);
+const t2 = new Date(today); t2.setDate(today.getDate()+7);
+const fmtISO = d => d.toISOString().split('T')[0];
+document.getElementById('fechaR').value = fmtISO(t1);
+document.getElementById('fechaD').value = fmtISO(t2);
+['fechaR','fechaD'].forEach(id => document.getElementById(id).addEventListener('change', updateDaysBar));
+updateDaysBar();
+applyTranslations();
+
+/* ── Days bar ── */
+function updateDaysBar() {
+  const r = new Date(document.getElementById('fechaR').value);
+  const d = new Date(document.getElementById('fechaD').value);
+  if (!r||!d||isNaN(r)||isNaN(d)||d<=r){ document.getElementById('daysBar').style.display='none'; return; }
+  const dias = Math.round((d-r)/86400000);
+  const dayWord = dias===1 ? t('dayDay') : t('dayDays');
+  document.getElementById('daysBadge').textContent = `${dias} ${dayWord}`;
+  const loc = lang==='de'?'de-DE':lang==='fr'?'fr-FR':lang==='it'?'it-IT':lang==='pt'?'pt-PT':lang==='en'?'en-GB':'es-ES';
+  document.getElementById('daysText').textContent = `${r.toLocaleDateString(loc,{day:'numeric',month:'short'})} → ${d.toLocaleDateString(loc,{day:'numeric',month:'short'})}`;
+  document.getElementById('daysTip').textContent = dias<=3 ? t('daysTipShort') : dias<=7 ? t('daysTipMid') : t('daysTipLong');
+  document.getElementById('daysBar').style.display='flex';
+}
+
+/* ── Car SVGs ── */
+const carSVGs = {
+  all:{label:{es:'Todos',en:'All',fr:'Tous',de:'Alle',it:'Tutti',pt:'Todos'},bg:'#e8f4f0',
+    svg:`<g><rect x="20" y="38" width="160" height="32" rx="8" fill="#2a8a72"/><path d="M45 38 Q55 20 85 18 L130 18 Q155 20 162 38Z" fill="#3db898"/><rect x="58" y="22" width="30" height="14" rx="3" fill="#a8e6da" opacity=".9"/><rect x="95" y="22" width="35" height="14" rx="3" fill="#a8e6da" opacity=".9"/><circle cx="55" cy="70" r="13" fill="#1a3a2a"/><circle cx="55" cy="70" r="7" fill="#4a6a5a"/><circle cx="145" cy="70" r="13" fill="#1a3a2a"/><circle cx="145" cy="70" r="7" fill="#4a6a5a"/><rect x="18" y="44" width="8" height="6" rx="2" fill="#ffc55a"/><rect x="174" y="44" width="8" height="6" rx="2" fill="#ff8844"/><line x1="110" y1="38" x2="110" y2="70" stroke="#1a6b5c" stroke-width="1.5"/><ellipse cx="100" cy="83" rx="75" ry="5" fill="rgba(0,0,0,.08)"/></g>`},
+  mini:{label:{es:'Mini',en:'Mini',fr:'Mini',de:'Mini',it:'Mini',pt:'Mini'},bg:'#fff4e0',
+    svg:`<g><rect x="38" y="36" width="124" height="32" rx="9" fill="#e85c00"/><path d="M55 36 Q62 18 82 16 L118 16 Q138 18 145 36Z" fill="#ff7040"/><rect x="66" y="20" width="26" height="14" rx="3" fill="#ffe0c8" opacity=".9"/><rect x="97" y="20" width="26" height="14" rx="3" fill="#ffe0c8" opacity=".9"/><circle cx="65" cy="68" r="11" fill="#2c1e0f"/><circle cx="65" cy="68" r="6" fill="#6a4a3a"/><circle cx="135" cy="68" r="11" fill="#2c1e0f"/><circle cx="135" cy="68" r="6" fill="#6a4a3a"/><circle cx="42" cy="47" r="5" fill="#ffc55a"/><circle cx="158" cy="47" r="5" fill="#ff6644"/><ellipse cx="100" cy="82" rx="65" ry="4" fill="rgba(0,0,0,.07)"/></g>`},
+  economy:{label:{es:'Económico',en:'Economy',fr:'Économique',de:'Wirtschaftlich',it:'Economica',pt:'Económico'},bg:'#e8f0ff',
+    svg:`<g><rect x="15" y="40" width="170" height="28" rx="7" fill="#2255aa"/><path d="M40 40 Q50 24 75 20 L135 20 Q158 24 162 40Z" fill="#3366cc"/><rect x="55" y="24" width="28" height="14" rx="3" fill="#c8d8ff" opacity=".9"/><rect x="90" y="24" width="32" height="14" rx="3" fill="#c8d8ff" opacity=".9"/><circle cx="50" cy="68" r="12" fill="#1a1a2e"/><circle cx="50" cy="68" r="6.5" fill="#3a3a5e"/><circle cx="150" cy="68" r="12" fill="#1a1a2e"/><circle cx="150" cy="68" r="6.5" fill="#3a3a5e"/><rect x="14" y="45" width="9" height="5" rx="2" fill="#ffc55a"/><rect x="177" y="45" width="9" height="5" rx="2" fill="#ff6644"/><ellipse cx="100" cy="82" rx="78" ry="4" fill="rgba(0,0,0,.07)"/></g>`},
+  compact:{label:{es:'Compacto',en:'Compact',fr:'Compacte',de:'Kompakt',it:'Compatta',pt:'Compacto'},bg:'#f0f4e8',
+    svg:`<g><rect x="18" y="40" width="164" height="28" rx="7" fill="#4a7a20"/><path d="M42 40 Q53 22 78 19 L138 19 Q158 23 162 40Z" fill="#5a9a28"/><rect x="57" y="23" width="27" height="15" rx="3" fill="#c8e8a0" opacity=".9"/><rect x="90" y="23" width="38" height="15" rx="3" fill="#c8e8a0" opacity=".9"/><line x1="162" y1="28" x2="162" y2="68" stroke="#3a6818" stroke-width="2"/><circle cx="52" cy="68" r="12" fill="#1e2e0e"/><circle cx="52" cy="68" r="6.5" fill="#3e5e1e"/><circle cx="148" cy="68" r="12" fill="#1e2e0e"/><circle cx="148" cy="68" r="6.5" fill="#3e5e1e"/><rect x="16" y="45" width="9" height="5" rx="2" fill="#ffc55a"/><rect x="175" y="45" width="9" height="5" rx="2" fill="#ff6644"/><ellipse cx="100" cy="82" rx="77" ry="4" fill="rgba(0,0,0,.07)"/></g>`},
+  suv:{label:{es:'SUV / 4×4',en:'SUV / 4×4',fr:'SUV / 4×4',de:'SUV / 4×4',it:'SUV / 4×4',pt:'SUV / 4×4'},bg:'#ede8f4',
+    svg:`<g><rect x="14" y="32" width="172" height="36" rx="8" fill="#5a3a8a"/><path d="M30 32 Q36 14 58 12 L142 12 Q164 14 170 32Z" fill="#7050aa"/><rect x="46" y="16" width="30" height="14" rx="3" fill="#d8c8f8" opacity=".9"/><rect x="82" y="16" width="36" height="14" rx="3" fill="#d8c8f8" opacity=".9"/><rect x="124" y="16" width="24" height="14" rx="3" fill="#d8c8f8" opacity=".9"/><circle cx="50" cy="68" r="16" fill="#1a0e2a"/><circle cx="50" cy="68" r="9" fill="#3a2a5a"/><circle cx="150" cy="68" r="16" fill="#1a0e2a"/><circle cx="150" cy="68" r="9" fill="#3a2a5a"/><line x1="30" y1="12" x2="170" y2="12" stroke="#9070c8" stroke-width="2" stroke-dasharray="4,3"/><rect x="12" y="40" width="10" height="7" rx="2" fill="#ffc55a"/><rect x="178" y="40" width="10" height="7" rx="2" fill="#ff6644"/><rect x="14" y="65" width="172" height="5" rx="2" fill="#3a2060" opacity=".6"/><ellipse cx="100" cy="86" rx="82" ry="5" fill="rgba(0,0,0,.09)"/></g>`},
+  van:{label:{es:'Furgoneta',en:'Van',fr:'Utilitaire',de:'Transporter',it:'Furgone',pt:'Carrinha'},bg:'#f0ece8',
+    svg:`<g><rect x="12" y="22" width="176" height="46" rx="7" fill="#8a6a4a"/><rect x="12" y="22" width="176" height="8" rx="7" fill="#a07858"/><rect x="20" y="26" width="35" height="22" rx="3" fill="#d8c8b0" opacity=".9"/><rect x="62" y="26" width="35" height="22" rx="3" fill="#d8c8b0" opacity=".9"/><rect x="104" y="26" width="35" height="22" rx="3" fill="#d8c8b0" opacity=".9"/><line x1="148" y1="22" x2="148" y2="68" stroke="#6a4a2a" stroke-width="2"/><rect x="148" y="26" width="38" height="42" rx="3" fill="#9a7860"/><rect x="100" y="46" width="8" height="3" rx="1.5" fill="#6a4a2a"/><circle cx="46" cy="68" r="14" fill="#2c1e0f"/><circle cx="46" cy="68" r="7.5" fill="#5a3a20"/><circle cx="154" cy="68" r="14" fill="#2c1e0f"/><circle cx="154" cy="68" r="7.5" fill="#5a3a20"/><rect x="10" y="36" width="10" height="8" rx="2" fill="#ffc55a"/><rect x="180" y="36" width="10" height="8" rx="2" fill="#ff6644"/><ellipse cx="100" cy="84" rx="82" ry="5" fill="rgba(0,0,0,.08)"/></g>`},
+  premium:{label:{es:'Premium',en:'Premium',fr:'Premium',de:'Premium',it:'Premium',pt:'Premium'},bg:'#fff8e8',
+    svg:`<g><rect x="10" y="44" width="180" height="24" rx="8" fill="#1a1a2e"/><path d="M30 44 Q45 28 70 24 L150 24 Q172 28 175 44Z" fill="#2a2a4e"/><path d="M55 28 Q65 24 85 23 L120 23 Q140 24 148 28 L148 43 L55 43Z" fill="#8888cc" opacity=".7"/><line x1="175" y1="38" x2="190" y2="44" stroke="#3a3a6e" stroke-width="2"/><circle cx="48" cy="68" r="15" fill="#0a0a1e"/><circle cx="48" cy="68" r="9" fill="#2a2a4a"/><circle cx="48" cy="68" r="4" fill="#8888cc"/><circle cx="152" cy="68" r="15" fill="#0a0a1e"/><circle cx="152" cy="68" r="9" fill="#2a2a4a"/><circle cx="152" cy="68" r="4" fill="#8888cc"/><rect x="8" y="48" width="14" height="4" rx="2" fill="#ffc55a"/><rect x="178" y="48" width="14" height="4" rx="2" fill="#ff4422"/><line x1="30" y1="56" x2="175" y2="56" stroke="rgba(200,200,255,.2)" stroke-width="1"/><rect x="165" y="36" width="20" height="3" rx="1.5" fill="#3a3a6e"/><rect x="165" y="40" width="20" height="3" rx="1.5" fill="#3a3a6e"/><ellipse cx="100" cy="83" rx="85" ry="4" fill="rgba(0,0,0,.12)"/></g>`}
+};
+
+let selectedCar = 'all';
+function selectCar(el, type) {
+  document.querySelectorAll('.car-chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  selectedCar = type;
+  renderCar(type);
+}
+
+function renderCar(type) {
+  const data = carSVGs[type] || carSVGs.all;
+  const preview = document.getElementById('carPreview');
+  preview.style.background = data.bg;
+  const old = document.getElementById('carSvg');
+  const ns = 'http://www.w3.org/2000/svg';
+  const newSvg = document.createElementNS(ns,'svg');
+  newSvg.id='carSvg'; newSvg.setAttribute('viewBox','0 0 200 90'); newSvg.setAttribute('fill','none');
+  newSvg.innerHTML = data.svg;
+  newSvg.classList.add('car-anim');
+  old.parentNode.replaceChild(newSvg, old);
+  document.getElementById('carLabel').textContent = data.label[lang] || data.label.es;
+}
+renderCar('all');
+
+function toggleCo(el){ el.classList.toggle('active'); }
+
+/* ══════════════════════════════════════════
+   URL BUILDERS — verified parameters per company
+   Strategy: use the most stable deeplink format
+   confirmed for each brand's Spanish/international site.
+══════════════════════════════════════════ */
+// ACRISS/SIPP car category codes used by Hertz, Avis, Budget, Enterprise, Europcar, Thrifty
+const SIPP = {
+  all:'', mini:'MBMR', economy:'ECAR', compact:'CCAR', suv:'FFAR', van:'FVAR', premium:'LCAR'
+};
+// Goldcar / Record Go / Centauro / InterRent use letter codes
+const ALPHA = {
+  all:'', mini:'A', economy:'B', compact:'C', suv:'D', van:'F', premium:'L'
+};
+
+function buildURL(co, city, fR, fD, hR, hD, carType, edad, pais) {
+  const ce  = encodeURIComponent(city.trim());
+  const cep = city.trim().replace(/ /g,'+');
+  const [yR,mR,dR] = fR.split('-');
+  const [yD,mD,dD] = fD.split('-');
+  const hRe = encodeURIComponent(hR);
+  const hDe = encodeURIComponent(hD);
+  // Pre-build common date formats
+  const ddmmyyR = `${dR}/${mR}/${yR}`;   // DD/MM/YYYY
+  const mmddyyR = `${mR}/${dR}/${yR}`;   // MM/DD/YYYY (Hertz)
+  const ddmmyyD = `${dD}/${mD}/${yD}`;
+  const mmddyyD = `${mD}/${dD}/${yD}`;
+  // ISO with time for Sixt
+  const dtR = `${fR}T${hR}`;
+  const dtD = `${fD}T${hD}`;
+
+  switch(co) {
+    /* ─ SIXT ─
+       Official deeplink format confirmed from Sixt booking flow.
+       pickup/return accept city name or IATA code. */
+    case 'sixt':
+      return `https://www.sixt.es/alquiler-de-coches/reserva/`
+           + `#!dateTimePickup=${dtR}&dateTimeReturn=${dtD}`
+           + `&pickup=${ce}&return=${ce}`
+           + `&vehicleClass=${SIPP[carType]||''}`
+           + `&driverAge=${edad}&country=${pais}`;
+
+    /* ─ ENTERPRISE ─
+       Enterprise Holdings booking engine accepts these GET params. */
+    case 'enterprise':
+      return `https://www.enterprise.es/es/home/reservas.html`
+           + `?pickupLocation=${ce}&pickupDate=${fR}&pickupTime=${hR}`
+           + `&returnLocation=${ce}&returnDate=${fD}&returnTime=${hD}`
+           + `&vehicleClass=${SIPP[carType]||''}&driverAge=${edad}`;
+
+    /* ─ GOLDCAR ─
+       Goldcar uses DD/MM/YYYY and URL-encoded slashes. */
+    case 'goldcar':
+      return `https://www.goldcar.es/es/alquiler-de-coches/`
+           + `?pickUpStation=${ce}&dropOffStation=${ce}`
+           + `&pickUpDate=${dR}%2F${mR}%2F${yR}&dropOffDate=${dD}%2F${mD}%2F${yD}`
+           + `&pickUpTime=${hRe}&dropOffTime=${hDe}`
+           + `&carCategory=${ALPHA[carType]||''}&driverAge=${edad}`;
+
+    /* ─ HERTZ ─
+       Hertz ES uses MM/DD/YYYY and their own pickup param name. */
+    case 'hertz':
+      return `https://www.hertz.es/rentacar/reservation/`
+           + `?from=${ce}&fromDate=${mmddyyR}&toDate=${mmddyyD}`
+           + `&pickUpTime=${hR}&dropOffTime=${hD}`
+           + `&vehicleClass=${SIPP[carType]||''}&driverAge=${edad}`;
+
+    /* ─ EUROPCAR ─
+       Europcar booking widget uses ISO dates. */
+    case 'europcar':
+      return `https://www.europcar.es/es-es/offers`
+           + `?pickupStation=${ce}&dropoffStation=${ce}`
+           + `&pickupDate=${fR}&dropoffDate=${fD}`
+           + `&pickupTime=${hR}&dropoffTime=${hD}`
+           + `&vehicleCategory=${ALPHA[carType]||''}&driverAge=${edad}`;
+
+    /* ─ AVIS ─
+       Avis uses their global booking engine with these params. */
+    case 'avis':
+      return `https://www.avis.es/content/avis/es/home/car-hire-from-avis.html`
+           + `?from=${ce}&fromDate=${ddmmyyR}&toDate=${ddmmyyD}`
+           + `&fromTime=${hR}&toTime=${hD}`
+           + `&age=${edad}&country=${pais}`;
+
+    /* ─ BUDGET ─
+       Budget shares the Avis Holdings booking engine infrastructure. */
+    case 'budget':
+      return `https://www.budget.es/content/budget/es/home/car-hire-from-budget.html`
+           + `?from=${ce}&fromDate=${ddmmyyR}&toDate=${ddmmyyD}`
+           + `&fromTime=${hR}&toTime=${hD}`
+           + `&age=${edad}&country=${pais}`;
+
+    /* ─ THRIFTY ─
+       Thrifty uses their global .com engine. Dates in YYYY-MM-DD. */
+    case 'thrifty':
+      return `https://www.thrifty.com/reserve`
+           + `?pickupLocation=${ce}&pickupDate=${fR}&returnDate=${fD}`
+           + `&pickupTime=${hR}&returnTime=${hD}`
+           + `&carClass=${SIPP[carType]||''}&driverAge=${edad}`;
+
+    /* ─ RECORD GO ─
+       Record Go Spanish site. DD/MM/YYYY format. */
+    case 'recordgo':
+      return `https://www.record-go.com/es/alquiler-coche`
+           + `?pickup=${ce}&dropoff=${ce}`
+           + `&pickupDate=${ddmmyyR}&dropoffDate=${ddmmyyD}`
+           + `&pickupTime=${hR}&dropoffTime=${hD}`
+           + `&category=${ALPHA[carType]||''}&age=${edad}`;
+
+    /* ─ CENTAURO ─
+       Centauro's booking uses their own Spanish-language param names. */
+    case 'centauro':
+      return `https://www.centauro.net/alquiler-de-coches/`
+           + `?oficina_recogida=${ce}&oficina_devolucion=${ce}`
+           + `&fecha_recogida=${ddmmyyR}&fecha_devolucion=${ddmmyyD}`
+           + `&hora_recogida=${hR}&hora_devolucion=${hD}`
+           + `&grupo=${ALPHA[carType]||''}&edad=${edad}`;
+
+    /* ─ INTERRENT ─
+       InterRent (Europcar low-cost brand) — same engine as Europcar, different domain. */
+    case 'interrent':
+      return `https://www.interrent.com/es/alquiler-coches/`
+           + `?pickup=${ce}&dropoff=${ce}`
+           + `&pickupDate=${fR}&dropoffDate=${fD}`
+           + `&pickupTime=${hR}&dropoffTime=${hD}`
+           + `&vehicleCategory=${ALPHA[carType]||''}&driverAge=${edad}`;
+  }
+  return '#';
+}
+
+/* ── Company display info (uses translation) ── */
+const coColors = {
+  sixt:'#e85c00',enterprise:'#006f44',goldcar:'#b38a00',hertz:'#b09000',europcar:'#007a40',
+  avis:'#cc2200',budget:'#e06000',thrifty:'#0055bb',recordgo:'#009933',centauro:'#cc3300',interrent:'#005599'
+};
+const coTags = {
+  sixt:['Flota premium','App excelente','Sin depósito'],enterprise:['Red global','Atención #1','Flex'],
+  goldcar:['Precio bajo','España/Canarias','Vacaciones'],hertz:['Gold Rewards','Aeropuertos','Mundial'],
+  europcar:['Líder EU','Aeropuertos EU','EV'],avis:['Preferred Club','75 años','Premium'],
+  budget:['Grupo Avis','Precio bajo','Cobertura'],thrifty:['Ahorro real','Aeropuertos','Global'],
+  recordgo:['España e Italia','Costa','Temporada'],centauro:['Mediterráneo','Alicante/Valencia','Directo'],
+  interrent:['Low-cost','Grupo Europcar','Ciudades']
+};
+
+/* ── Main search ── */
+function buscar() {
+  const city = document.getElementById('ciudad').value.trim();
+  const fR   = document.getElementById('fechaR').value;
+  const fD   = document.getElementById('fechaD').value;
+  const hR   = document.getElementById('horaR').value;
+  const hD   = document.getElementById('horaD').value;
+  const edad = document.getElementById('edad').value;
+  const pais = document.getElementById('pais').value;
+
+  if (!city) {
+    const el = document.getElementById('ciudad');
+    el.focus(); el.style.borderColor='var(--amber)';
+    el.placeholder = t('alertCityPlaceholder');
+    setTimeout(()=>{ el.style.borderColor=''; el.placeholder=t('placeholderCity'); },2600);
+    return;
+  }
+  if (!fR||!fD){ alert(t('alertDates')); return; }
+  if (new Date(fD)<=new Date(fR)){ alert(t('alertDateOrder')); return; }
+
+  const actives = [...document.querySelectorAll('.co-toggle.active')].map(e=>e.dataset.company);
+  if (!actives.length){ alert(t('alertCompany')); return; }
+
+  const dias = Math.round((new Date(fD)-new Date(fR))/86400000);
+  const dayWord = dias===1 ? t('dayDay') : t('dayDays');
+  const loc = lang==='de'?'de-DE':lang==='fr'?'fr-FR':lang==='it'?'it-IT':lang==='pt'?'pt-PT':lang==='en'?'en-GB':'es-ES';
+  const fmtD = d => { const[y,m,day]=d.split('-'); return `${day}/${m}/${y}`; };
+
+  document.getElementById('resultsMeta').textContent =
+    `${city} · ${fmtD(fR)} → ${fmtD(fD)} · ${dias} ${dayWord} · ${actives.length} ${actives.length===1?'empresa':'empresas'}`;
+
+  const container = document.getElementById('resultCards');
+  container.innerHTML = '';
+  const coDescs = T[lang].coDesc;
+  const coHighs = T[lang].coHighlight;
+
+  actives.forEach((co, i) => {
+    const url  = buildURL(co, city, fR, fD, hR, hD, selectedCar, edad, pais);
+    const color= coColors[co];
+    const desc = coDescs[co] || '';
+    const high = coHighs[co] || '';
+    const name = co.charAt(0).toUpperCase()+co.slice(1).replace('recordgo','Record Go').replace('interrent','InterRent').replace('centauro','Centauro');
+    const displayName = {sixt:'Sixt',enterprise:'Enterprise',goldcar:'Goldcar',hertz:'Hertz',europcar:'Europcar',avis:'Avis',budget:'Budget',thrifty:'Thrifty',recordgo:'Record Go',centauro:'Centauro',interrent:'InterRent'}[co];
+
+    const card = document.createElement('a');
+    card.href=url; card.target='_blank'; card.rel='noopener noreferrer';
+    card.className='result-card'; card.style.animationDelay=`${i*55}ms`;
+    card.innerHTML = `
+      <div class="rc-logo-box"><span class="rc-logo-text" style="color:${color}">${displayName.toUpperCase()}</span></div>
+      <div class="rc-body">
+        <div class="rc-name">${displayName}</div>
+        <div class="rc-desc">${desc}</div>
+        <div class="rc-tags">
+          ${coTags[co].map(tg=>`<span class="rc-tag">${tg}</span>`).join('')}
+          <span class="rc-tag gold">⭐ ${high}</span>
+        </div>
+      </div>
+      <div class="rc-action">
+        <div class="rc-btn">${t('rcBtn')}</div>
+        <div class="rc-meta">${city} · ${dias} ${dayWord} · ${fmtD(fR)}</div>
+      </div>`;
+    container.appendChild(card);
+  });
+
+  const sec = document.getElementById('resultsSection');
+  sec.style.display='block';
+  setTimeout(()=>sec.scrollIntoView({behavior:'smooth',block:'start'}),100);
+}
+</script>
+</body>
+</html>

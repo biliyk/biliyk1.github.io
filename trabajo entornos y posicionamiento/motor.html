@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Mundo del Motor — AutoCompara</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sand:#f5f0e8;--cream:#faf7f2;--brown:#2c1e0f;--brown2:#4a3728;
+  --amber:#d4850a;--amber2:#f0a030;--amber3:#ffc55a;
+  --teal:#1a6b5c;--teal2:#2a8a72;--teal3:#3db898;
+  --muted:#8a7a68;--border:#ddd3c0;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--brown);font-family:'Outfit',sans-serif;overflow-x:hidden;}
+
+/* NAV */
+.site-nav{background:linear-gradient(135deg,#1a3a2a,#0f2818);padding:18px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.3);}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:1.5rem;color:#fff;text-decoration:none;display:flex;align-items:center;gap:8px;}
+.logo-dot{width:8px;height:8px;background:var(--amber3);border-radius:50%;}
+.nav-links{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.nav-link{padding:6px 14px;border-radius:100px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.82);font-size:.78rem;font-weight:600;text-decoration:none;transition:all .2s;}
+.nav-link:hover,.nav-link.active{background:var(--amber);border-color:var(--amber);color:#fff;}
+.soc-row{display:flex;gap:6px;}
+.soc-btn{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .2s;}
+.soc-btn svg{width:14px;height:14px;}
+.soc-btn:hover{background:var(--amber);border-color:var(--amber);color:#fff;}
+
+/* HERO */
+.page-hero{position:relative;height:480px;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.4);}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,40,24,.7),rgba(26,30,40,.5));}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 24px;}
+.page-kicker{display:inline-flex;align-items:center;gap:8px;background:rgba(212,133,10,.25);border:1px solid rgba(212,133,10,.4);color:var(--amber3);font-size:.75rem;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:20px;}
+.page-h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(2.2rem,5vw,3.8rem);color:#fff;line-height:1.08;letter-spacing:-1px;margin-bottom:14px;}
+.page-h1 em{font-style:italic;color:var(--amber3);}
+.page-sub{font-size:1rem;color:rgba(255,255,255,.65);max-width:540px;margin:0 auto;line-height:1.7;font-weight:300;}
+.hero-bottom{position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent,var(--amber3),var(--teal3),transparent);}
+
+/* TOC */
+.toc-bar{background:#fff;border-bottom:1px solid var(--border);padding:14px 40px;display:flex;gap:6px;overflow-x:auto;position:sticky;top:65px;z-index:90;scrollbar-width:none;}
+.toc-bar::-webkit-scrollbar{display:none;}
+.toc-btn{padding:6px 14px;border-radius:100px;border:1.5px solid var(--border);font-size:.78rem;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap;text-decoration:none;transition:all .2s;background:var(--cream);}
+.toc-btn:hover{border-color:var(--amber);color:var(--brown);}
+
+/* MAIN */
+.main-wrap{max-width:980px;margin:0 auto;padding:0 24px 80px;}
+
+/* Section */
+.motor-section{margin-top:60px;}
+.sec-kicker{font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:8px;}
+.sec-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.9rem;color:var(--brown);margin-bottom:16px;line-height:1.15;}
+.sec-body{font-size:.94rem;color:var(--brown2);line-height:1.78;}
+.sec-body p{margin-bottom:16px;}
+.sec-body p:last-child{margin-bottom:0;}
+
+/* Image grid */
+.img-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0;}
+.img-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:28px 0;}
+.img-grid-hero{margin:28px 0;}
+.motor-img{width:100%;border-radius:14px;object-fit:cover;display:block;background:#ddd;}
+.img-grid-2 .motor-img{height:230px;}
+.img-grid-3 .motor-img{height:180px;}
+.img-grid-hero .motor-img{height:380px;}
+.img-caption{font-size:.72rem;color:var(--muted);text-align:center;margin-top:6px;font-style:italic;}
+
+/* Wide image with caption -->
+.img-wrap{margin:28px 0;}
+.img-wrap .motor-img{height:300px;}
+
+/* Stat cards */
+.stat-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:28px 0;}
+.stat-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px 14px;text-align:center;}
+.stat-card .num{font-family:'Playfair Display',serif;font-weight:700;font-size:1.7rem;color:var(--teal);display:block;margin-bottom:4px;}
+.stat-card .lbl{font-size:.75rem;color:var(--muted);font-weight:500;}
+
+/* Era cards */
+.era-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin:28px 0;}
+.era-card{background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:transform .2s,box-shadow .2s;}
+.era-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(44,30,15,.1);}
+.era-card img{width:100%;height:180px;object-fit:cover;display:block;background:#e0d8cc;}
+.era-body{padding:18px;}
+.era-year{font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);margin-bottom:5px;}
+.era-title{font-family:'Playfair Display',serif;font-weight:700;font-size:1.1rem;color:var(--brown);margin-bottom:7px;}
+.era-desc{font-size:.81rem;color:var(--muted);line-height:1.6;}
+
+/* Pull quote */
+.pullquote{background:linear-gradient(135deg,rgba(26,107,92,.07),rgba(212,133,10,.05));border-left:4px solid var(--teal);border-radius:0 14px 14px 0;padding:20px 24px;margin:32px 0;font-family:'Playfair Display',serif;font-style:italic;font-size:1.06rem;color:var(--brown2);line-height:1.6;}
+
+/* Tech comparison table */
+.tech-table{width:100%;border-collapse:collapse;margin:24px 0;font-size:.86rem;}
+.tech-table th{background:var(--brown);color:#fff;padding:12px 16px;text-align:left;font-weight:600;font-size:.8rem;letter-spacing:.5px;}
+.tech-table th:first-child{border-radius:10px 0 0 0;}
+.tech-table th:last-child{border-radius:0 10px 0 0;}
+.tech-table td{padding:11px 16px;border-bottom:1px solid var(--border);color:var(--brown2);}
+.tech-table tr:nth-child(even) td{background:var(--sand);}
+.tech-table tr:hover td{background:rgba(212,133,10,.06);}
+.badge-good{background:rgba(26,107,92,.1);color:var(--teal);padding:2px 8px;border-radius:100px;font-size:.72rem;font-weight:700;}
+.badge-mid{background:rgba(212,133,10,.1);color:var(--amber);padding:2px 8px;border-radius:100px;font-size:.72rem;font-weight:700;}
+.badge-low{background:rgba(180,50,20,.1);color:#b43214;padding:2px 8px;border-radius:100px;font-size:.72rem;font-weight:700;}
+
+/* CTA box */
+.cta-box{text-align:center;padding:40px;background:linear-gradient(135deg,#1a3a2a,#0f2818);border-radius:20px;margin-top:60px;position:relative;overflow:hidden;}
+.cta-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(61,184,152,.12),transparent 70%);}
+.cta-box h3{font-family:'Playfair Display',serif;font-weight:700;font-size:1.6rem;color:#fff;margin-bottom:10px;position:relative;}
+.cta-box p{color:rgba(255,255,255,.6);font-size:.88rem;margin-bottom:22px;position:relative;}
+.cta-box a{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--amber),var(--amber2));color:#fff;padding:14px 30px;border-radius:12px;font-weight:700;font-size:.95rem;text-decoration:none;box-shadow:0 6px 20px rgba(212,133,10,.35);position:relative;transition:transform .2s;}
+.cta-box a:hover{transform:translateY(-2px);}
+
+/* Footer */
+.page-footer{background:var(--brown);color:rgba(255,255,255,.4);padding:28px 40px;text-align:center;font-size:.77rem;line-height:1.8;}
+.page-footer strong{color:rgba(255,255,255,.76);}
+.pf-links{display:flex;gap:16px;justify-content:center;margin-bottom:14px;flex-wrap:wrap;}
+.pf-link{color:rgba(255,255,255,.5);text-decoration:none;font-size:.78rem;transition:color .2s;}
+.pf-link:hover{color:var(--amber3);}
+
+@media(max-width:720px){
+  .img-grid-2,.img-grid-3,.era-grid{grid-template-columns:1fr;}
+  .stat-strip{grid-template-columns:1fr 1fr;}
+  .toc-bar{padding:12px 16px;}
+  .site-nav{padding:14px 20px;}
+  .main-wrap{padding:0 16px 60px;}
+  .page-hero{height:360px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="autocompara.html" class="logo"><span class="logo-dot"></span>AutoCompara</a>
+  <div class="nav-links">
+    <a href="autocompara.html" class="nav-link">🚗 Comparador</a>
+    <a href="historia.html"    class="nav-link">📖 Nuestra Historia</a>
+    <a href="motor.html"       class="nav-link active">🏎️ El Mundo del Motor</a>
+  </div>
+  <div class="soc-row">
+    <a href="https://www.instagram.com/autocompara" target="_blank" rel="noopener" class="soc-btn" title="Instagram">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/company/autocompara" target="_blank" rel="noopener" class="soc-btn" title="LinkedIn">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+    </a>
+    <a href="https://x.com/autocompara" target="_blank" rel="noopener" class="soc-btn" title="X">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- HERO with real Unsplash photo -->
+<section class="page-hero">
+  <img class="hero-img" src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1600&q=80&auto=format&fit=crop" alt="Coche deportivo clásico en carretera" loading="eager">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="page-kicker">🏎️ Revista del motor</div>
+    <h1 class="page-h1">El Mundo del Motor:<br><em>ayer, hoy</em> y mañana</h1>
+    <p class="page-sub">Desde el primer motor de combustión hasta el coche eléctrico autónomo. Un recorrido completo por la historia y el presente del automóvil.</p>
+  </div>
+  <div class="hero-bottom"></div>
+</section>
+
+<!-- TOC -->
+<div class="toc-bar">
+  <a href="#origen" class="toc-btn">🔩 Los orígenes</a>
+  <a href="#golden" class="toc-btn">✨ La Era Dorada</a>
+  <a href="#masas" class="toc-btn">🏭 El coche para todos</a>
+  <a href="#deportivo" class="toc-btn">🏁 Coches deportivos</a>
+  <a href="#electrico" class="toc-btn">⚡ La revolución eléctrica</a>
+  <a href="#futuro" class="toc-btn">🤖 El futuro autónomo</a>
+  <a href="#alquiler" class="toc-btn">🗝️ El alquiler hoy</a>
+</div>
+
+<div class="main-wrap">
+
+  <!-- SECTION 1: Orígenes -->
+  <div class="motor-section" id="origen">
+    <div class="sec-kicker">1885 – 1910 · Los orígenes</div>
+    <h2 class="sec-title">Cuando Karl Benz cambió el mundo para siempre</h2>
+    <div class="img-grid-hero">
+      <img class="motor-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80&auto=format&fit=crop" alt="Motor clásico antiguo" loading="lazy">
+      <div class="img-caption">Los primeros motores de combustión interna transformaron el transporte para siempre</div>
+    </div>
+    <div class="sec-body">
+      <p>En 1885, Karl Benz presentó el <strong>Benz Patent-Motorwagen</strong>, considerado universalmente el primer automóvil de la historia propulsado por un motor de gasolina. Tenía tres ruedas, un motor monocilíndrico de 0,75 CV y alcanzaba una velocidad máxima de 16 km/h. Para los estándares de la época, era una revolución absoluta.</p>
+      <p>Casi al mismo tiempo, en otra ciudad de Alemania, Gottlieb Daimler y Wilhelm Maybach desarrollaban su propio motor de cuatro tiempos, que colocaron sobre una bicicleta de madera en 1885, creando lo que muchos consideran la primera motocicleta. Un año después, motorizaron un carruaje de caballos, dando lugar al primer automóvil de cuatro ruedas.</p>
+      <p>La rivalidad entre estos pioneros no tardó en convertirse en colaboración: en 1926, Benz & Cie. y Daimler-Motoren-Gesellschaft se fusionaron para crear <strong>Mercedes-Benz</strong>, una de las marcas más icónicas de la historia del automóvil.</p>
+    </div>
+    <div class="img-grid-2">
+      <div>
+        <img class="motor-img" src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=80&auto=format&fit=crop" alt="Automóvil clásico vintage" loading="lazy">
+        <div class="img-caption">Los primeros automóviles eran artesanales y extremadamente exclusivos</div>
+      </div>
+      <div>
+        <img class="motor-img" src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&q=80&auto=format&fit=crop" alt="Coche clásico en carretera" loading="lazy">
+        <div class="img-caption">A principios del siglo XX el automóvil era un símbolo de lujo y modernidad</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: Golden Age -->
+  <div class="motor-section" id="golden">
+    <div class="sec-kicker">1920 – 1950 · La Era Dorada</div>
+    <h2 class="sec-title">Glamour, velocidad y el arte del diseño automóvil</h2>
+    <div class="sec-body">
+      <p>Los años 20 y 30 del siglo pasado representaron la primera gran edad de oro del automóvil. Las marcas europeas —Bugatti, Alfa Romeo, Bentley, Hispano-Suiza— competían no solo en velocidad sino en elegancia. Los carroceros italianos y franceses convirtieron el automóvil en una obra de arte sobre ruedas.</p>
+      <p>El <strong>Bugatti Type 35</strong>, presentado en 1924, es quizás el coche de carreras más exitoso de toda la historia: ganó más de 1.000 competiciones en su vida activa. Con su carrocería de aluminio fundido y sus llantas de fundición integral, era tan bello como letal en pista.</p>
+    </div>
+    <div class="era-grid">
+      <div class="era-card">
+        <img src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=800&q=80&auto=format&fit=crop" alt="Coche clásico de los años 30" loading="lazy">
+        <div class="era-body">
+          <div class="era-year">1920s – 1930s</div>
+          <div class="era-title">El automóvil como símbolo de estatus</div>
+          <div class="era-desc">Marcas como Rolls-Royce, Bugatti y Hispano-Suiza definieron el lujo sobre ruedas para generaciones enteras.</div>
+        </div>
+      </div>
+      <div class="era-card">
+        <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&q=80&auto=format&fit=crop" alt="Coche clásico americano años 40" loading="lazy">
+        <div class="era-body">
+          <div class="era-year">1940s</div>
+          <div class="era-title">La guerra y el renacimiento industrial</div>
+          <div class="era-desc">La Segunda Guerra Mundial transformó las fábricas de automóviles en productoras bélicas. Al acabar, el sector resurgió más fuerte que nunca.</div>
+        </div>
+      </div>
+    </div>
+    <div class="pullquote">
+      "El automóvil no es solo un medio de transporte. Es la extensión mecánica de la personalidad humana, la libertad convertida en metal y velocidad."
+    </div>
+  </div>
+
+  <!-- SECTION 3: Masas -->
+  <div class="motor-section" id="masas">
+    <div class="sec-kicker">1950 – 1980 · El coche para todos</div>
+    <h2 class="sec-title">Henry Ford, el Seat 600 y la democratización del automóvil</h2>
+    <div class="img-wrap">
+      <img class="motor-img" src="https://images.unsplash.com/photo-1541447271487-09612b3f49f7?w=1200&q=80&auto=format&fit=crop" alt="Fábrica de automóviles cadena de montaje" loading="lazy">
+      <div class="img-caption">Las cadenas de montaje transformaron el automóvil de artículo de lujo a bien de consumo masivo</div>
+    </div>
+    <div class="sec-body">
+      <p>Aunque Henry Ford introdujo la cadena de montaje en 1913 con el <strong>Modelo T</strong>, fue en la posguerra cuando el automóvil se convirtió verdaderamente en un artículo de consumo masivo. En Europa, modelos como el <strong>Volkswagen Escarabajo</strong>, el <strong>Citroën 2CV</strong>, el <strong>Fiat 500</strong> y el <strong>SEAT 600</strong> pusieron el automóvil al alcance de la clase media.</p>
+      <p>En España, el SEAT 600, lanzado en 1957, se convirtió en símbolo de la modernización del país. Se fabricaron más de 794.000 unidades. Para millones de familias españolas, fue el primer coche propio, el coche de la libertad, el coche de los viajes de verano a la playa con el maletero lleno de maletas atadas con cuerdas.</p>
+    </div>
+    <div class="stat-strip">
+      <div class="stat-card"><span class="num">794K</span><span class="lbl">SEAT 600 fabricados</span></div>
+      <div class="stat-card"><span class="num">21M</span><span class="lbl">VW Escarabajos vendidos</span></div>
+      <div class="stat-card"><span class="num">3.8M</span><span class="lbl">Citroën 2CV producidos</span></div>
+      <div class="stat-card"><span class="num">4.2M</span><span class="lbl">Fiat 500 clásicos fabricados</span></div>
+    </div>
+    <div class="img-grid-3">
+      <div>
+        <img class="motor-img" src="https://images.unsplash.com/photo-1566473965997-3de9c817e938?w=600&q=80&auto=format&fit=crop" alt="Volkswagen Escarabajo clásico" loading="lazy">
+        <div class="img-caption">VW Escarabajo — el coche del pueblo</div>
+      </div>
+      <div>
+        <img class="motor-img" src="https://images.unsplash.com/photo-1558618047-f31a14ab27b8?w=600&q=80&auto=format&fit=crop" alt="Coche italiano clásico años 60" loading="lazy">
+        <div class="img-caption">Italia dominó el diseño europeo</div>
+      </div>
+      <div>
+        <img class="motor-img" src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&q=80&auto=format&fit=crop" alt="Automóvil clásico años 70" loading="lazy">
+        <div class="img-caption">Los 70, la crisis del petróleo y el cambio</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: Deportivo -->
+  <div class="motor-section" id="deportivo">
+    <div class="sec-kicker">1960 – 2000 · Los iconos deportivos</div>
+    <h2 class="sec-title">Ferrari, Porsche y la obsesión por la velocidad</h2>
+    <div class="sec-body">
+      <p>Si el automóvil de los años 50 representaba la libertad, el deportivo de los años 60 y 70 representaba la ambición. <strong>Ferrari</strong>, fundada en 1947 por Enzo Ferrari, se convirtió en sinónimo de pasión italiana y velocidad pura. Su rival más consistente en el road car market, <strong>Porsche</strong>, apostaba por una filosofía diferente: la ingeniería sobre el espectáculo.</p>
+      <p>El <strong>Porsche 911</strong>, presentado en 1963, es quizás el automóvil deportivo más longevo e influyente de la historia: más de 60 años después, sigue en producción con la misma silueta reconocible. El <strong>Ferrari 250 GTO</strong> de 1962, por otro lado, se ha convertido en el automóvil más valioso del mundo, alcanzando precios de venta superiores a 70 millones de dólares en subastas recientes.</p>
+    </div>
+    <div class="img-grid-2">
+      <div>
+        <img class="motor-img" src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&q=80&auto=format&fit=crop" alt="Ferrari deportivo rojo" loading="lazy">
+        <div class="img-caption">Ferrari — velocidad y pasión italiana en estado puro</div>
+      </div>
+      <div>
+        <img class="motor-img" src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=800&q=80&auto=format&fit=crop" alt="Porsche clásico deportivo" loading="lazy">
+        <div class="img-caption">Porsche 911 — la ingeniería alemana convertida en leyenda</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: Eléctrico -->
+  <div class="motor-section" id="electrico">
+    <div class="sec-kicker">2010 – Hoy · La revolución eléctrica</div>
+    <h2 class="sec-title">Tesla, el fin del combustión y el nuevo orden mundial del motor</h2>
+    <div class="img-wrap">
+      <img class="motor-img" src="https://images.unsplash.com/photo-1571987502227-9231b837d92a?w=1200&q=80&auto=format&fit=crop" alt="Coche eléctrico moderno cargando" loading="lazy">
+      <div class="img-caption">El coche eléctrico ha pasado de ser una rareza a dominar las ventas en muchos mercados europeos</div>
+    </div>
+    <div class="sec-body">
+      <p>Cuando Tesla lanzó el Roadster en 2008, muchos lo veían como un experimento caro y excéntrico. Cuando lanzó el Model S en 2012 —un sedán eléctrico capaz de acelerar de 0 a 100 km/h en menos de 3 segundos— quedó claro que el automóvil eléctrico no era el futuro: era el presente.</p>
+      <p>La respuesta de los fabricantes tradicionales no se hizo esperar. Volkswagen lanzó el ID.4, BMW el iX, Mercedes el EQS, Porsche el Taycan. En España, las ventas de vehículos eléctricos e híbridos superaron por primera vez el 30% del total en 2024. La red de cargadores rápidos crece a un ritmo sin precedentes.</p>
+      <p>Pero la revolución eléctrica no es solo tecnológica. Es también un cambio en la relación del conductor con su coche: <strong>actualizaciones por OTA, conducción autónoma asistida, conectividad total</strong> con el smartphone. El automóvil ha dejado de ser un producto para convertirse en un servicio.</p>
+    </div>
+
+    <!-- Comparison table -->
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.2rem;margin:28px 0 14px;color:var(--brown);">Comparativa: combustión vs eléctrico vs híbrido en 2025</h3>
+    <table class="tech-table">
+      <thead>
+        <tr>
+          <th>Característica</th>
+          <th>Combustión</th>
+          <th>Híbrido</th>
+          <th>Eléctrico puro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Autonomía media</td><td>600–900 km</td><td>700–1.000 km</td><td>300–600 km</td></tr>
+        <tr><td>Coste de recarga/repostaje</td><td><span class="badge-low">Alto</span></td><td><span class="badge-mid">Medio</span></td><td><span class="badge-good">Bajo</span></td></tr>
+        <tr><td>Emisiones CO₂</td><td><span class="badge-low">Altas</span></td><td><span class="badge-mid">Medias</span></td><td><span class="badge-good">Cero en uso</span></td></tr>
+        <tr><td>Mantenimiento</td><td><span class="badge-low">Frecuente</span></td><td><span class="badge-mid">Moderado</span></td><td><span class="badge-good">Mínimo</span></td></tr>
+        <tr><td>Precio inicial medio</td><td><span class="badge-good">Bajo</span></td><td><span class="badge-mid">Medio</span></td><td><span class="badge-low">Alto</span></td></tr>
+        <tr><td>Red de recarga</td><td><span class="badge-good">Muy extensa</span></td><td><span class="badge-good">Muy extensa</span></td><td><span class="badge-mid">Creciendo</span></td></tr>
+        <tr><td>Conducción urbana</td><td><span class="badge-mid">Aceptable</span></td><td><span class="badge-good">Excelente</span></td><td><span class="badge-good">Óptima</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="img-grid-3">
+      <div>
+        <img class="motor-img" src="https://images.unsplash.com/photo-1611954108029-ee3c6e2a3965?w=600&q=80&auto=format&fit=crop" alt="Tesla Model S moderno" loading="lazy">
+        <div class="img-caption">Tesla lideró la revolución eléctrica</div>
+      </div>
+      <div>
+        <img class="motor-img" src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&q=80&auto=format&fit=crop" alt="Cargador coche eléctrico" loading="lazy">
+        <div class="img-caption">La infraestructura de carga crece a ritmo récord</div>
+      </div>
+      <div>
+        <img class="motor-img" src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600&q=80&auto=format&fit=crop" alt="Coche eléctrico moderno diseño" loading="lazy">
+        <div class="img-caption">El diseño eléctrico redefine la aerodinámica</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: Futuro -->
+  <div class="motor-section" id="futuro">
+    <div class="sec-kicker">2025 y más allá · El futuro autónomo</div>
+    <h2 class="sec-title">Conducción autónoma, coches voladores y movilidad como servicio</h2>
+    <div class="img-wrap">
+      <img class="motor-img" src="https://images.unsplash.com/photo-1618759287629-ca51ef5c0f7f?w=1200&q=80&auto=format&fit=crop" alt="Interior coche del futuro conducción autónoma" loading="lazy">
+      <div class="img-caption">Los interiores de los coches autónomos rediseñan completamente el espacio del conductor</div>
+    </div>
+    <div class="sec-body">
+      <p>El SAE (Society of Automotive Engineers) define 6 niveles de autonomía, del 0 (control total del conductor) al 5 (autonomía completa sin intervención humana). En 2025, la mayoría de los coches de alta gama se sitúan entre el nivel 2 y el nivel 3, con sistemas como el <strong>Autopilot de Tesla</strong>, el <strong>Highway Assist de BMW</strong> o el <strong>Drive Pilot de Mercedes</strong> —el primero en recibir homologación legal para nivel 3 en Alemania y EE.UU.</p>
+      <p>El concepto de <strong>MaaS (Mobility as a Service)</strong> —la movilidad como servicio, en lugar de como propiedad— está redefiniendo la industria. Empresas como Waymo ya operan robotaxis sin conductor humano en varias ciudades americanas. Se estima que para 2035 el 10% de los vehículos en circulación en países desarrollados serán autónomos.</p>
+    </div>
+    <div class="img-grid-2">
+      <div>
+        <img class="motor-img" src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&q=80&auto=format&fit=crop" alt="Tecnología de conducción autónoma sensores" loading="lazy">
+        <div class="img-caption">Los sensores LiDAR y las cámaras son los "ojos" del coche autónomo</div>
+      </div>
+      <div>
+        <img class="motor-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&auto=format&fit=crop" alt="Movilidad urbana futura ciudad inteligente" loading="lazy">
+        <div class="img-caption">Las ciudades inteligentes rediseñan su infraestructura para la movilidad autónoma</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: Alquiler -->
+  <div class="motor-section" id="alquiler">
+    <div class="sec-kicker">El motor y el alquiler · Hoy</div>
+    <h2 class="sec-title">Alquilar un coche en 2025: el gran cambio del sector</h2>
+    <div class="sec-body">
+      <p>El sector del alquiler de coches ha vivido una transformación radical en los últimos diez años. La digitalización ha cambiado por completo cómo los viajeros buscan, comparan y reservan. En 2015, más del 60% de las reservas se hacían en el propio mostrador del aeropuerto. En 2024, ese porcentaje se ha invertido: más del 75% de las reservas se realizan online antes de llegar.</p>
+      <p>Las grandes rentadoras —Sixt, Enterprise, Hertz, Europcar, Avis— han invertido cientos de millones en sus apps y plataformas digitales. Los precios son ahora dinámicos, como los billetes de avión: el mismo coche puede costar el doble un sábado que un miércoles, o tres veces más en temporada alta que en temporada baja.</p>
+      <p>Por eso tiene más sentido que nunca <strong>comparar antes de reservar</strong>: con las herramientas adecuadas, es posible acceder al precio real de cada empresa sin intermediarios ni comisiones ocultas.</p>
+    </div>
+    <div class="img-wrap">
+      <img class="motor-img" style="height:260px;" src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1200&q=80&auto=format&fit=crop" alt="Aeropuerto moderno coches alquiler" loading="lazy">
+      <div class="img-caption">Los aeropuertos concentran la mayor demanda de alquiler de coches en España y Europa</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <h3>¿Listo para coger el volante?</h3>
+    <p>Compara las 11 grandes rentadoras en 30 segundos y llega a la web oficial con todo ya listo.</p>
+    <a href="autocompara.html">🚗 Ir al comparador →</a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="page-footer">
+  <div class="pf-links">
+    <a href="autocompara.html" class="pf-link">🚗 Comparador</a>
+    <a href="historia.html"    class="pf-link">📖 Nuestra Historia</a>
+    <a href="motor.html"       class="pf-link">🏎️ El Mundo del Motor</a>
+    <a href="https://www.instagram.com/autocompara" target="_blank" class="pf-link">Instagram</a>
+    <a href="https://www.linkedin.com/company/autocompara" target="_blank" class="pf-link">LinkedIn</a>
+    <a href="https://x.com/autocompara" target="_blank" class="pf-link">X / Twitter</a>
+  </div>
+  <strong>AutoCompara</strong> · Comparador gratuito de alquiler de coches<br>
+  <span id="cpYear"></span> © AutoCompara™ · Todos los derechos reservados · Diseño protegido
+  <script>document.getElementById('cpYear').textContent=new Date().getFullYear();</script>
+</footer>
+</body>
+</html>
