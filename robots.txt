@@ -2,11 +2,9 @@ User-agent: *
 Allow: /
 
 # Páginas principales
-Allow: /autocompara.html
+Allow: /index.html
 Allow: /historia.html
 Allow: /motor.html
-
-# Archivos de referencia SEO
 Allow: /sitemap.xml
 
 # Bloquear recursos innecesarios para crawlers
@@ -15,7 +13,4 @@ Disallow: /private/
 Disallow: /*.log$
 
 # Sitemap
-Sitemap: https://www.autocompara.com/sitemap.xml
-
-# Crawl-delay recomendado (opcional, respetado por algunos bots)
-Crawl-delay: 10
+Sitemap: https://biliyk.github.io/sitemap.xml
