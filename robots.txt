@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Páginas principales
+Allow: /autocompara.html
+Allow: /historia.html
+Allow: /motor.html
+
+# Archivos de referencia SEO
+Allow: /sitemap.xml
+
+# Bloquear recursos innecesarios para crawlers
+Disallow: /tmp/
+Disallow: /private/
+Disallow: /*.log$
+
+# Sitemap
+Sitemap: https://www.autocompara.com/sitemap.xml
+
+# Crawl-delay recomendado (opcional, respetado por algunos bots)
+Crawl-delay: 10
